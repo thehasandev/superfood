@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <nav>
       <ul>
-        <li>Home</li>
+        <li>hasan</li>
       </ul>
     </nav>
   );
