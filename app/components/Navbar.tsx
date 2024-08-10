@@ -1,41 +1,56 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Container from "./Container";
-import Logo from "../../public/images/logo.png";
+import LogoDark from "../../public/images/logo-dark.png";
+import LogoLight from "../../public/images/logo-white.png";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
-import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const [isFixed, setIsFixed] = useState(false);
-
-  const { ref, inView } = useInView({
-    rootMargin: '0px 0px -100px 0px', // Trigger when the navbar is just out of view
-    threshold: 0 // Trigger as soon as any part of the navbar is out of view
-  });
+  const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    // Update the fixed state based on inView
-    setIsFixed(!inView);
-  }, [inView]);
+    const handleScroll = () => {
+      // Change '50' to the scroll position you want to trigger the sticky behavior
+      if (window.scrollY > 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
 
-  console.log(isFixed);
-  
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav ref={ref} className={`w-full z-10 transition-all duration-300 `}>
+    <div
+      className={`w-full z-10 transition-all duration-300 fixed top-0 ${
+        isSticky ? "bg-white shadow-lg" : ""
+      }`}
+    >
       <Container>
         <nav className="flex justify-between py-4 items-center">
           {/*======== Logo =======*/}
           <div className="w-2/12">
-            <Image src={Logo} alt="logo" />
+            {isSticky ? (
+              <Image src={LogoDark} alt="logo" />
+            ) : (
+              <Image src={LogoLight} alt="logo" />
+            )}
           </div>
 
           {/*======== Nav List =========== */}
           <div className="w-8/12 flex justify-end gap-5">
-            <ul className="flex gap-4 text-black"> {/* Adjust color based on the background */}
+            <ul
+              className={`flex gap-4 ${isSticky ? "text-black" : "text-white"}`}
+            >
               <li>Home</li>
               <li>Pages</li>
               <li>Portfolio</li>
@@ -45,7 +60,11 @@ export default function Navbar() {
             </ul>
 
             {/*======== Icons ========== */}
-            <div className="flex gap-5 items-center text-black"> {/* Adjust color based on the background */}
+            <div
+              className={`flex gap-5 items-center ${
+                isSticky ? "text-black" : "text-white"
+              }`}
+            >
               <span>|</span>
               <FaShoppingCart />
               <FaSearch />
@@ -54,6 +73,6 @@ export default function Navbar() {
           </div>
         </nav>
       </Container>
-    </nav>
+    </div>
   );
 }

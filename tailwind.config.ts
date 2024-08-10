@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        banner: "url('/images/banner.png')"
+        banner: "url('/images/banner.png')",
       },
       spacing: {
         container: "1320px",
