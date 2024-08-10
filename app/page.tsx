@@ -1,5 +1,5 @@
 import Container from "./components/Container";
 
 export default function Home() {
-  return <>Food</>;
+  return <h1 className="text-red-500">Food</h1>;
 }
