@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Container from "./Container";
-import LogoDark from "../../public/images/logo-dark.png";
-import LogoLight from "../../public/images/logo-white.png";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 
@@ -40,9 +37,9 @@ export default function Navbar() {
           {/*======== Logo =======*/}
           <div className="w-2/12">
             {isSticky ? (
-              <Image src={LogoDark} alt="logo" />
+               <img src="./images/logo-dark.png" alt="dark logo" />
             ) : (
-              <Image src={LogoLight} alt="logo" />
+              <img src="./images/logo-white.png" alt="dark white" />
             )}
           </div>
 
