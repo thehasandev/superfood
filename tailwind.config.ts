@@ -14,6 +14,9 @@ const config: Config = {
       spacing: {
         container: "1320px",
       },
+      colors: {
+        'primary': '#3A3A3A',
+      },
     },
   },
   plugins: [],
