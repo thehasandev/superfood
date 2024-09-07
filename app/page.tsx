@@ -2,6 +2,7 @@ import Banner from "./components/Banner";
 import Counter from "./components/Counter";
 import Info from "./components/Info";
 import Product from "./components/Product";
+import Slider from "./components/Slider";
 import Testomonia from "./components/Testomonia";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
       <Product />
       <Counter />
       <Testomonia />
+      <Slider />
     </>
   );
 }
