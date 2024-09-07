@@ -12,6 +12,7 @@ const config: Config = {
         banner: "url('/images/banner.png')",
         counter: "url('/images/counter.jpg')",
         sidebar: "url('/images/sidebar.jpg')",
+        rating: "url('/images/bottom.jpg')",
       },
       spacing: {
         container: "1320px",

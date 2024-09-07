@@ -51,34 +51,7 @@ function Slider() {
             <img src="./images/s (9).png" alt="s1" />
           </SwiperSlide>
         </Swiper>
-        {/* <div>
-          <Swiper
-            spaceBetween={30}
-            slidesPerView={5}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-     
-            modules={[Autoplay]}
-          >
-            <SwiperSlide>
-              <img src="./images/s (1).png" alt="s1" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="./images/s (1).png" alt="s1" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="./images/s (1).png" alt="s1" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="./images/s (1).png" alt="s1" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src="./images/s (1).png" alt="s1" />
-            </SwiperSlide>
-          </Swiper>
-        </div> */}
+       
       </Container>
     </section>
   );
