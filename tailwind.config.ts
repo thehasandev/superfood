@@ -10,12 +10,13 @@ const config: Config = {
     extend: {
       backgroundImage: {
         banner: "url('/images/banner.png')",
+        counter: "url('/images/counter.jpg')",
       },
       spacing: {
         container: "1320px",
       },
       colors: {
-        'primary': '#3A3A3A',
+        primary: "#3A3A3A",
       },
     },
   },

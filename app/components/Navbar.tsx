@@ -37,7 +37,7 @@ export default function Navbar() {
           {/*======== Logo =======*/}
           <div className="w-2/12">
             {isSticky ? (
-               <img src="./images/logo-dark.png" alt="dark logo" />
+              <img src="./images/logo-dark.png" alt="dark logo" />
             ) : (
               <img src="./images/logo-white.png" alt="dark white" />
             )}
@@ -48,12 +48,60 @@ export default function Navbar() {
             <ul
               className={`flex gap-4 ${isSticky ? "text-black" : "text-white"}`}
             >
-              <li>Home</li>
-              <li>Pages</li>
-              <li>Portfolio</li>
-              <li>Blog</li>
-              <li>Elements</li>
-              <li>Shop</li>
+              <li
+                className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:duration-300 cursor-pointer ${
+                  isSticky
+                    ? "after:bg-[#111111] hover:text-[#111111]"
+                    : "after:bg-white"
+                }`}
+              >
+                Home
+              </li>
+              <li
+                className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:duration-300 cursor-pointer ${
+                  isSticky
+                    ? "after:bg-[#111111] hover:text-[#111111]"
+                    : "after:bg-white"
+                }`}
+              >
+                Pages
+              </li>
+              <li
+                className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:duration-300 cursor-pointer ${
+                  isSticky
+                    ? "after:bg-[#111111] hover:text-[#111111]"
+                    : "after:bg-white"
+                }`}
+              >
+                Portfolio
+              </li>
+              <li
+                className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:duration-300 cursor-pointer ${
+                  isSticky
+                    ? "after:bg-[#111111] hover:text-[#111111]"
+                    : "after:bg-white"
+                }`}
+              >
+                Blog
+              </li>
+              <li
+                className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:duration-300 cursor-pointer ${
+                  isSticky
+                    ? "after:bg-[#111111] hover:text-[#111111]"
+                    : "after:bg-white"
+                }`}
+              >
+                Elements
+              </li>
+              <li
+                className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:duration-300 cursor-pointer ${
+                  isSticky
+                    ? "after:bg-[#111111] hover:text-[#111111]"
+                    : "after:bg-white"
+                }`}
+              >
+                Shop
+              </li>
             </ul>
 
             {/*======== Icons ========== */}
