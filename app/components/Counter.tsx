@@ -4,7 +4,7 @@ import CountUp from "react-countup";
 
 export default function Counter() {
   return (
-    <div className="relative bg-counter bg-cover bg-no-repeat mb-16">
+    <div className="relative bg-counter bg-cover bg-no-repeat">
       <div className="py-16 bg-black/40 text-white">
         <Container>
           <div className="grid grid-cols-4">

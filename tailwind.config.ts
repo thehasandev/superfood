@@ -11,6 +11,7 @@ const config: Config = {
       backgroundImage: {
         banner: "url('/images/banner.png')",
         counter: "url('/images/counter.jpg')",
+        sidebar: "url('/images/sidebar.jpg')",
       },
       spacing: {
         container: "1320px",
