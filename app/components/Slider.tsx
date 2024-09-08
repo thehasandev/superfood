@@ -12,10 +12,26 @@ function Slider() {
         <Swiper
           spaceBetween={30}
           slidesPerView={5}
-          speed={1000} 
+          speed={1000}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
+          }}
+          breakpoints={{
+            "@0.00": {
+              slidesPerView: 2,
+             
+            },
+            "@0.75": {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            "@1.00": {
+              slidesPerView: 3,
+            },
+            "@1.50": {
+              slidesPerView: 4,
+            },
           }}
           pagination={{
             clickable: true,
@@ -51,7 +67,6 @@ function Slider() {
             <img src="./images/s (9).png" alt="s1" />
           </SwiperSlide>
         </Swiper>
-       
       </Container>
     </section>
   );

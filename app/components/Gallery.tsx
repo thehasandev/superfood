@@ -15,9 +15,22 @@ export default function Gallery() {
           delay: 2500,
           disableOnInteraction: false,
         }}
+        breakpoints={{
+          "@0.00": {
+            slidesPerView: 2,
+          },
+          "@0.75": {
+            slidesPerView: 2,
+          },
+          "@1.00": {
+            slidesPerView: 3,
+          },
+          "@1.50": {
+            slidesPerView: 7,
+          },
+        }}
         modules={[Autoplay]}
       >
-   
         <SwiperSlide>
           <img src="./images/g2.jpg" alt="g1" />
         </SwiperSlide>
@@ -81,8 +94,6 @@ export default function Gallery() {
         <SwiperSlide>
           <img src="./images/g6.jpg" alt="g1" />
         </SwiperSlide>
-
-        
       </Swiper>
     </section>
   );
