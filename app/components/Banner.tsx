@@ -11,7 +11,7 @@ export default function Banner() {
         <div className="relative bg-banner  w-full bg-no-repeat bg-center bg-cover">
           <div className=" bg-black/20 w-full">
             <Container>
-              <div className="flex items-center  md:w-5/12 px-3 xl-px-0 py-[250px] md:py-[280px]">
+              <div className="flex items-center  md:w-5/12 px-3 xl-px-0 py-[280px]">
                 <div className="text-white">
                   <h1 className="text-5xl md:text-7xl font-black">
                     The Art of tree
@@ -32,7 +32,7 @@ export default function Banner() {
         </div>
 
         {/* Sticky Icons  */}
-        <div className="hidden md:flex gap-4 flex-col fixed top-1/2 -translate-y-1/2 right-0 text-white">
+        <div className="hidden md:flex gap-4 flex-col fixed z-10 top-1/2 -translate-y-1/2 right-0 text-white">
           <div className="w-10 h-10 bg-pink-700 flex justify-center items-center">
             <GiSurroundedEye size={20} />
           </div>
