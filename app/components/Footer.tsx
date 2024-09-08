@@ -9,10 +9,10 @@ import { FaFacebookSquare } from "react-icons/fa";
 export default function Footer() {
   return (
     <>
-      <footer className="bg-[#363636] py-20">
+      <footer className="bg-[#363636] py-20 px-4 xl:px-0">
         <Container>
           <div className="grid grid-cols-7 gap-5">
-            <div className="text-white col-span-2">
+            <div className="text-white col-span-7 md:col-span-2">
               <img src="./images/logo-white.png" alt="dark white" />
               <p className="text-base my-2">
                 At vero eos et accusam et justo duo dolo res et ea rebum. Stet
@@ -28,7 +28,7 @@ export default function Footer() {
                 Eighth Avenue 487, New York
               </p>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-7 md:col-span-2">
               <form>
                 <input
                   type="text"
@@ -46,9 +46,9 @@ export default function Footer() {
                 />
               </form>
             </div>
-            <div className="text-white col-span-2">
+            <div className="col-span-7 text-white md:col-span-2">
               <h2 className="text-3xl font-semibold">Twitter feed</h2>
-              <p className="my-4">Couldn't connect with Twitter</p>
+              <p className="my-4">Couldnt connect with Twitter</p>
               <div className="flex gap-5">
                 <FaFacebookSquare />
                 <MdOutlineWhatsapp />
