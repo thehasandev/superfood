@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={signika.className}>
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

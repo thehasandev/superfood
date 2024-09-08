@@ -14,7 +14,9 @@ export default function Banner() {
               <div className="flex items-center h-screen w-5/12">
                 <div className="text-white">
                   <h1 className="text-7xl font-black">The Art of tree</h1>
-                  <p className={`text-lg font-medium my-5 ${openSans.className}`}>
+                  <p
+                    className={`text-lg font-medium my-5 ${openSans.className}`}
+                  >
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laborum facilis eum non, mollitia tempore laudantium?
                   </p>
@@ -28,7 +30,7 @@ export default function Banner() {
         </div>
 
         {/* Sticky Icons  */}
-        <div className="flex gap-4 flex-col fixed top-1/2 -translate-y-1/2 right-0 text-white">
+        <div className="hidden md:flex gap-4 flex-col fixed top-1/2 -translate-y-1/2 right-0 text-white">
           <div className="w-10 h-10 bg-pink-700 flex justify-center items-center">
             <GiSurroundedEye size={20} />
           </div>

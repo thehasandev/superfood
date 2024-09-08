@@ -1,5 +1,6 @@
 import Banner from "./components/Banner";
 import Counter from "./components/Counter";
+import Gallery from "./components/Gallery";
 import Info from "./components/Info";
 import Product from "./components/Product";
 import Rating from "./components/Rating";
@@ -16,6 +17,7 @@ export default function Home() {
       <Testomonia />
       <Slider />
       <Rating />
+      <Gallery />
     </>
   );
 }
