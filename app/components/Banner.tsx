@@ -8,14 +8,16 @@ export default function Banner() {
     <section>
       <>
         {/*============= Banner ========= */}
-        <div className="relative bg-banner h-screen w-full bg-no-repeat bg-center bg-cover">
-          <div className="absolute top-0 bg-black/20 w-full h-full">
+        <div className="relative bg-banner  w-full bg-no-repeat bg-center bg-cover">
+          <div className=" bg-black/20 w-full">
             <Container>
-              <div className="flex items-center h-screen w-5/12">
+              <div className="flex items-center  md:w-5/12 px-3 xl-px-0 py-[250px] md:py-[280px]">
                 <div className="text-white">
-                  <h1 className="text-7xl font-black">The Art of tree</h1>
+                  <h1 className="text-5xl md:text-7xl font-black">
+                    The Art of tree
+                  </h1>
                   <p
-                    className={`text-lg font-medium my-5 ${openSans.className}`}
+                    className={`md:text-lg font-medium my-5 ${openSans.className}`}
                   >
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laborum facilis eum non, mollitia tempore laudantium?
