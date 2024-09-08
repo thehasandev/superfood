@@ -6,13 +6,13 @@ import { CiStar } from "react-icons/ci";
 function Testomonia() {
   return (
     <>
-      <section className="bg-sidebar bg-cover bg-left bg-no-repeat pt-20 pb-40">
+      <section className="bg-sidebar bg-cover bg-left bg-no-repeat pt-20 pb-40 px-3 xl:px-0">
         <Container>
           <div className="text-center">
-            <h2 className="text-5xl font-bold text-[#444444]">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#444444]">
               Beautiful Blog Layouts
             </h2>
-            <p className="text-xl my-4 w-8/12 mx-auto text-black/50">
+            <p className="md:text-xl my-4 md:w-8/12 mx-auto text-black/50">
               The Elated Slider comes with video and image support, as well as
               full screen and parallax functionality. Display your essential
               content in style. Add sections with the stunning parallax effect
@@ -25,10 +25,10 @@ function Testomonia() {
           </div>
         </Container>
       </section>
-      <section className="mb-20">
+      <section className="mb-20 px-3 xl:px-0">
         <Container>
-          <div className="grid grid-cols-3">
-            <div className="pt-32">
+          <div className="grid grid-cols-3 gap-y-5">
+            <div className="pt-32 col-span-3 md:col-span-1">
               <div className="flex gap-2">
                 <GiSelfLove className="text-[#00BDBB] text-[35px]" />
                 <div>
@@ -68,8 +68,8 @@ function Testomonia() {
               </div>
             </div>
 
-            <div className="relative col-span-2 ">
-              <div className="absolute -top-24 right-0">
+            <div className="relative col-span-3 md:col-span-2">
+              <div className="md:absolute -top-24 right-0">
                 <img src="./images/mag.png" alt="mag" />
               </div>
             </div>
