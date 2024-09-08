@@ -4,6 +4,7 @@ import Container from "./Container";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import Image from "next/image";
 
 export default function Gallery() {
   return (
@@ -32,67 +33,67 @@ export default function Gallery() {
         modules={[Autoplay]}
       >
         <SwiperSlide>
-          <img src="./images/g2.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g2.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g3.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g3.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g4.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g4.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g5.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g5.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g2.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g2.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g3.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g3.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g4.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g4.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g5.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g5.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g2.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g2.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g3.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g3.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g4.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g4.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g5.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g5.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./images/g6.jpg" alt="g1" />
+          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
         </SwiperSlide>
       </Swiper>
     </section>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import info from "../data/info";
 import Container from "./Container";
 
@@ -22,7 +23,7 @@ export default function Info() {
             )}
           </div>
           <div className="md:mt-5 col-span-3 md:col-span-1 mx-auto">
-            <img src="./images/top.png" alt="" />
+            <Image width={300} height={300} src="/images/top.png" alt="" />
           </div>
           <div className="flex flex-col gap-4 justify-between col-span-3 md:col-span-1">
             {info.map(

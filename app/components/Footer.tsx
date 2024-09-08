@@ -6,6 +6,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import { FaFacebookSquare } from "react-icons/fa";
+import Image from "next/image";
 export default function Footer() {
   return (
     <>
@@ -13,7 +14,7 @@ export default function Footer() {
         <Container>
           <div className="grid grid-cols-7 gap-5">
             <div className="text-white col-span-7 md:col-span-2">
-              <img src="./images/logo-white.png" alt="dark white" />
+              <Image height={100} width={100} src="/images/logo-white.png" alt="dark white" />
               <p className="text-base my-2">
                 At vero eos et accusam et justo duo dolo res et ea rebum. Stet
                 clita kasd guber gren. Aenean sollici tudin lorem quis biben dum

@@ -1,10 +1,11 @@
+import Image from "next/image";
 import { FaStarHalfStroke } from "react-icons/fa6";
 
 export default function Cart({ data, className }: any) {
   return (
     <div className={`text-center ${className}`}>
       <div className="relative overflow-hidden group">
-        <img src={data?.url} alt="p1" />
+        <Image width={320} height={200} src={data?.url} alt="p1" />
         <div className="absolute w-full h-full bg-black bg-opacity-10 bottom-[-100%] group-hover:bottom-0 duration-500 flex items-center justify-center">
           <button className="text-base bg-sky-600 rounded-sm px-6 py-2 text-white uppercase">
             Add To Card

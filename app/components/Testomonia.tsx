@@ -2,6 +2,7 @@ import Container from "./Container";
 import { GiSelfLove } from "react-icons/gi";
 import { FaGift } from "react-icons/fa6";
 import { CiStar } from "react-icons/ci";
+import Image from "next/image";
 
 function Testomonia() {
   return (
@@ -70,7 +71,7 @@ function Testomonia() {
 
             <div className="relative col-span-3 md:col-span-2">
               <div className="md:absolute -top-24 right-0">
-                <img src="./images/mag.png" alt="mag" />
+                <Image height={400} width={600} src="/images/mag.png" alt="mag" />
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Container from "./Container";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
@@ -38,9 +39,9 @@ export default function Navbar() {
           {/*======== Logo =======*/}
           <div className="md:w-2/12 w-4/12">
             {isSticky ? (
-              <img src="./images/logo-dark.png" alt="dark logo" />
+              <Image height={120} width={200} src="/images/logo-dark.png" alt="dark logo" />
             ) : (
-              <img src="./images/logo-white.png" alt="dark white" />
+              <Image height={120} width={200} src="/images/logo-white.png" alt="dark white" />
             )}
           </div>
 

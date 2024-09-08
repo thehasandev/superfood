@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import { Open_Sans, Signika } from "next/font/google";
 
 const signika = Signika({ subsets: ["latin"] });
-export const openSans = Open_Sans({ subsets: ["latin"] });
+// const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Super Food",
@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={signika.className}>
+      <body className={`${signika.className}`}>
         <Navbar />
         {children}
         <Footer />

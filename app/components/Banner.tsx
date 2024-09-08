@@ -1,7 +1,7 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { GiSurroundedEye } from "react-icons/gi";
 import Container from "./Container";
-import { openSans } from "../layout";
+
 
 export default function Banner() {
   return (
@@ -17,7 +17,7 @@ export default function Banner() {
                     The Art of tree
                   </h1>
                   <p
-                    className={`md:text-lg font-medium my-5 ${openSans.className}`}
+                    className={`md:text-lg font-medium my-5`}
                   >
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laborum facilis eum non, mollitia tempore laudantium?
