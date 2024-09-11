@@ -47,7 +47,30 @@ const info = [
     title: "Blueberry tea",
     price: 150,
   },
-
+  {
+    id: "8",
+    url: "/images/p8.png",
+    title: "Blueberry tea",
+    price: 150,
+  },
+  {
+    id: "9",
+    url: "/images/p2.png",
+    title: "Blueberry tea",
+    price: 150,
+  },
+  {
+    id: "10",
+    url: "/images/p3.png",
+    title: "Blueberry tea",
+    price: 150,
+  },
+  {
+    id: "10",
+    url: "/images/p5.png",
+    title: "Blueberry tea",
+    price: 150,
+  },
 ];
 
 export default info;

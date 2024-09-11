@@ -1,9 +1,31 @@
 import Image from "next/image";
 import { FaStarHalfStroke } from "react-icons/fa6";
 
-export default function Cart({ data, className }: any) {
+interface CartProps {
+  data: {
+    url: string;
+    title: string;
+    price: number;
+  };
+  className?: string;
+  type?: "horizontal" | "vertical";
+}
+
+export default function Cart({
+  data,
+  className,
+  type = "vertical",
+}: CartProps) {
   return (
-    <div className={`text-center ${className}`}>
+    <div
+      className={`${
+        type === "horizontal"
+          ? "flex items-center gap-4"
+          : type === "vertical"
+          ? "text-center"
+          : ""
+      } ${className}`}
+    >
       <div className="relative overflow-hidden group">
         <Image width={400} height={200} src={data?.url} alt="p1" />
         <div className="absolute w-full h-full bg-black bg-opacity-10 bottom-[-100%] group-hover:bottom-0 duration-500 flex items-center justify-center">
