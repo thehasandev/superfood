@@ -16,9 +16,7 @@ export default function Banner() {
                   <h1 className="text-5xl md:text-7xl font-black">
                     The Art of tree
                   </h1>
-                  <p
-                    className={`md:text-lg font-medium my-5`}
-                  >
+                  <p className={`md:text-lg font-medium my-5`}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Laborum facilis eum non, mollitia tempore laudantium?
                   </p>

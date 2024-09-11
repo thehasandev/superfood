@@ -1,14 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Container from "./Container";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useBradCrumb } from "../breadcumpContext/breadcumpContext";
+
+const list = [
+  { name: "Home", link: "/" },
+  { name: "Pages", link: "/pages" },
+  { name: "Portfolio", link: "/portfolio" },
+  { name: "Blog", link: "/blog" },
+  { name: "Elements", link: "/elements" },
+  { name: "Shop", link: "/shop" },
+];
 
 export default function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,20 +41,41 @@ export default function Navbar() {
     };
   }, []);
 
+  const { setActive }: any = useBradCrumb();
+
+  const handleBradcrumb = (item: any) => {
+    setActive(item.name);
+   
+  };
+
   return (
     <div
       className={`w-full z-10 transition-all duration-300 fixed top-0 px-3 xl-px-0 ${
-        isSticky ? "bg-white shadow-lg" : ""
-      }`}
+        isSticky ? "bg-white shadow-lg" : pathname === "/" ? "" : "bg-green-400"
+      } `}
     >
       <Container>
         <nav className="flex justify-between py-4 items-center">
           {/*======== Logo =======*/}
           <div className="md:w-2/12 w-4/12">
             {isSticky ? (
-              <Image height={120} width={200} src="/images/logo-dark.png" alt="dark logo" />
+              <Link href={"/"}>
+                <Image
+                  height={120}
+                  width={200}
+                  src="/images/logo-dark.png"
+                  alt="dark logo"
+                />
+              </Link>
             ) : (
-              <Image height={120} width={200} src="/images/logo-white.png" alt="dark white" />
+              <Link href={"/"}>
+                <Image
+                  height={120}
+                  width={200}
+                  src="/images/logo-white.png"
+                  alt="dark white"
+                />
+              </Link>
             )}
           </div>
 
@@ -53,20 +87,19 @@ export default function Navbar() {
                 isSticky ? "text-black" : "text-white"
               }`}
             >
-              {["Home", "Pages", "Portfolio", "Blog", "Elements", "Shop"].map(
-                (item) => (
-                  <li
-                    key={item}
-                    className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
-                      isSticky
-                        ? "after:bg-[#111111] hover:text-[#111111]"
-                        : "after:bg-white"
-                    }`}
-                  >
-                    {item}
-                  </li>
-                )
-              )}
+              {list.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => handleBradcrumb(item)}
+                  className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
+                    isSticky
+                      ? "after:bg-[#111111] hover:text-[#111111]"
+                      : "after:bg-white"
+                  }`}
+                >
+                  <Link href={item.link}>{item.name}</Link>
+                </li>
+              ))}
             </ul>
             {/* mobile Navbar  */}
 
@@ -75,20 +108,19 @@ export default function Navbar() {
                 open ? "scale-y-100 duration-700" : "scale-y-0"
               } origin-top`}
             >
-              {["Home", "Pages", "Portfolio", "Blog", "Elements", "Shop"].map(
-                (item) => (
-                  <li
-                    key={item}
-                    className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
-                      isSticky
-                        ? "after:bg-[#111111] hover:text-[#111111]"
-                        : "after:bg-white"
-                    }`}
-                  >
-                    {item}
-                  </li>
-                )
-              )}
+              {list.map((item, index) => (
+                <li
+                  onClick={() => handleBradcrumb(item)}
+                  key={index}
+                  className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
+                    isSticky
+                      ? "after:bg-[#111111] hover:text-[#111111]"
+                      : "after:bg-white"
+                  }`}
+                >
+                  <Link href={item.link}>{item.name}</Link>
+                </li>
+              ))}
             </ul>
 
             {/*======== Icons ========== */}

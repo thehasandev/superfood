@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { Open_Sans, Signika } from "next/font/google";
+import { Signika } from "next/font/google";
+import { BreadcrumbProvider } from "./breadcumpContext/breadcumpContext";
+
 
 const signika = Signika({ subsets: ["latin"] });
-// const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Super Food",
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${signika.className}`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <BreadcrumbProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </BreadcrumbProvider>
       </body>
     </html>
   );
