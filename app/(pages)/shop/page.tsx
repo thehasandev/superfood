@@ -4,9 +4,10 @@ import BreadCrumb from "../../components/Breadcrumb";
 import Container from "../../components/Container";
 import { FaSearch } from "react-icons/fa";
 import FilterForm from "@/app/components/FilterForm";
+import NextPagination from "@/app/components/NextPagination";
 export default function Shop() {
   return (
-    <section className="pb-20">
+    <section className="pb-20 px-3 xl:px-0">
       <Container>
         <div className="flex justify-between mt-5 items-center">
           <h1 className="my-20 text-xl font-bold uppercase text-[#444444]">
@@ -15,8 +16,8 @@ export default function Shop() {
           <BreadCrumb />
         </div>
         <section>
-          <div className="grid grid-cols-4 gap-8">
-            <div className="col-span-3">
+          <div className="grid grid-cols-4 gap-8 justify-center">
+            <div className="col-span-4 xl:col-span-3">
               <div className="flex justify-between items-center">
                 <p className="text-lg text-gray-400">
                   Showing 1–12 of 28 results
@@ -30,19 +31,11 @@ export default function Shop() {
               </div>
 
               {/* All Products   */}
-              <div className="grid grid-cols-3 gap-5 mt-5">
-                {Data?.map((item, index) => (
-                  <Cart
-                    data={item}
-                    key={index}
-                    className="col-span-4 min-[460px]:col-span-2  sm:col-span-2 md:col-span-1"
-                  />
-                ))}
-              </div>
+              <NextPagination itemsPerPage={12} />
             </div>
 
             {/*=============== Search Product  ================*/}
-            <div>
+            <div className="col-span-4 xl:col-span-1">
               <p className="text-xl mb-4">Search</p>
               <div className="relative">
                 <input
