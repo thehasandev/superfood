@@ -7,9 +7,11 @@ export default function NotFound() {
       <div className="flex justify-center items-center relative">
         <Image width={500} height={500} src="/images/not_found.jpg" alt="" />
 
-        <button className="absolute bottom-5 right-[10%] sm:right-[40%] border-red-600 border px-2.5 rounded-[4px] bg-red-600 text-white py-1">
-          Return Home
-        </button>
+        <Link href={"/"}>
+          <button className="absolute bottom-5 right-[10%] sm:right-[40%] border-red-600 border px-2.5 rounded-[4px] bg-red-600 text-white py-1">
+            Return Home
+          </button>
+        </Link>
       </div>
     </div>
   );

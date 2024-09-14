@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import FilterForm from "@/app/components/FilterForm";
 import NextPagination from "@/app/components/NextPagination";
 export default function Shop() {
+  asdfdafs
   return (
     <section className="pb-20 px-3 xl:px-0">
       <Container>
