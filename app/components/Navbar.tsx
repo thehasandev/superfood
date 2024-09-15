@@ -14,8 +14,8 @@ const list = [
   { name: "Pages", link: "/pages" },
   { name: "Portfolio", link: "/portfolio" },
   { name: "Blog", link: "/blog" },
-  { name: "Elements", link: "/elements" },
   { name: "Shop", link: "/shop" },
+  { name: "Contact", link: "/contact" },
 ];
 
 export default function Navbar() {

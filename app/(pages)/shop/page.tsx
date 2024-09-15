@@ -6,16 +6,12 @@ import { FaSearch } from "react-icons/fa";
 import FilterForm from "@/app/components/FilterForm";
 import NextPagination from "@/app/components/NextPagination";
 export default function Shop() {
-
   return (
-    <section className="pb-20 px-3 xl:px-0">
+
+    <section className="py-20 px-3 xl:px-0">
       <Container>
-        <div className="flex justify-between mt-5 items-center">
-          <h1 className="my-20 text-xl font-bold uppercase text-[#444444]">
-            Shop
-          </h1>
-          <BreadCrumb />
-        </div>
+        <BreadCrumb currentPage="Shop" />
+
         <section>
           <div className="grid grid-cols-4 gap-8 justify-center">
             <div className="col-span-4 xl:col-span-3">
