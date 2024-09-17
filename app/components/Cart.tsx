@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 import { FaStarHalfStroke } from "react-icons/fa6";
 
 interface CartProps {
@@ -36,7 +36,14 @@ export default function Cart({
       </div>
 
       <div>
-        <h3 className="text-2xl text-primary my-2 capitalize">{data?.title}</h3>
+        {/* Need to change api  */}
+        <Link
+          href={`/details/${data.title.toLocaleLowerCase().replace(" ", "-")}`}
+        >
+          <h3 className="text-2xl text-primary my-2 capitalize">
+            {data?.title}
+          </h3>
+        </Link>
         <div className="flex gap-2 text-orange-500 justify-center">
           <FaStarHalfStroke />
           <FaStarHalfStroke />
