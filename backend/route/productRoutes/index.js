@@ -10,10 +10,12 @@ const updateCategoryController = require("../../controllers/updateCategoryContro
 const allCategoreisController = require("../../controllers/allCategoreisController");
 const singleCategoryController = require("../../controllers/singleCategoryController");
 const singleProductController = require("../../controllers/singleProductController");
+const getProductByCategoryController = require("../../controllers/getProductByCategoryController");
 const _ = express.Router();
 
 _.get("/categories", allCategoreisController);
 _.get("/category", singleCategoryController);
+_.get("/categoryi",getProductByCategoryController)
 _.post("/create-category", createCategoryController);
 _.delete("/delete-category", deleteCategoryController);
 _.patch("/update-category", updateCategoryController);
@@ -23,5 +25,6 @@ _.get("/allproduct", allProductsController);
 _.get("/product", singleProductController);
 _.patch("/update-product", productEditContoroller);
 _.delete("/delete-product", productDeleteController);
+
 
 module.exports = _;
