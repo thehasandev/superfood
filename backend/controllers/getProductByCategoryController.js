@@ -1,11 +1,14 @@
 const Product = require("../model/productSchema");
 const Category = require("../model/categorySchema");
+
 const getProductByCategoryController = async (req, res) => {
   try {
-    const category = await Category.findById(req.query.id);
+    const category = await Category.findOne({ name: req.query.name });
+
     if (!category) {
       return res.status(404).json({ message: "Category not found" });
     }
+
     const products = await Product.find({ category: category._id }).populate(
       "category"
     );
