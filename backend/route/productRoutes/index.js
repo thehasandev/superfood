@@ -14,8 +14,8 @@ const getProductByCategoryController = require("../../controllers/getProductByCa
 const _ = express.Router();
 
 _.get("/categories", allCategoreisController);
-_.get("/category", singleCategoryController);
-_.get("/categoryi",getProductByCategoryController)
+_.get("/categori", singleCategoryController);
+_.get("/category",getProductByCategoryController)
 _.post("/create-category", createCategoryController);
 _.delete("/delete-category", deleteCategoryController);
 _.patch("/update-category", updateCategoryController);
