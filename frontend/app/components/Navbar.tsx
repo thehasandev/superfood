@@ -8,6 +8,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useBradCrumb } from "../breadcumpContext/breadcumpContext";
+import { AiOutlineCloseSquare } from "react-icons/ai";
+import { GrFormClose } from "react-icons/gr";
 
 const list = [
   { name: "Home", link: "/" },
@@ -45,8 +47,10 @@ export default function Navbar() {
 
   const handleBradcrumb = (item: any) => {
     setActive(item.name);
-   
   };
+
+  const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+console.log(isOpenSidebar);
 
   return (
     <div
@@ -125,12 +129,12 @@ export default function Navbar() {
 
             {/*======== Icons ========== */}
             <div
-              className={`flex gap-5 items-center  ${
+              className={`flex gap-5 items-center ${
                 isSticky ? "text-black" : "text-white"
               }`}
             >
               <span className="hidden md:block">|</span>
-              <FaShoppingCart />
+              <FaShoppingCart onClick={() => setIsOpenSidebar(true)} />
               <FaSearch />
               <IoMenu
                 size={22}
@@ -141,6 +145,90 @@ export default function Navbar() {
           </div>
         </nav>
       </Container>
+
+      <div
+        className={`lg:w-2/6 h-screen bg-[#e3e3e3]  absolute top-0 z-50 right-0 duration-300 ${
+          isOpenSidebar ? "scale-y-100" : "scale-y-0"
+        }`}
+      >
+        <div className="flex justify-end pr-4 pt-4">
+          <GrFormClose
+            onClick={() => setIsOpenSidebar(false)}
+            className="cursor-pointer"
+            size={40}
+          />
+        </div>
+        <h2>SHOPPING CART</h2>
+        <div>
+          <ul className="flex justify-between mt-5 px-2 ">
+            <li className="font-dm font-normal  lg:font-bold text-sm lg:text-base text-primary">
+              Action
+            </li>
+            <li className="font-dm  font-normal lg:font-bold text-sm lg:text-base text-primary">
+              Product
+            </li>
+            <li className="font-dm  font-normal lg:font-bold text-sm lg:text-base text-primary">
+              Name
+            </li>
+            <li className="font-dm  font-normal lg:font-bold text-sm lg:text-base text-primary">
+              Price
+            </li>
+            <li className="font-dm  font-normal lg:font-bold text-sm lg:text-base text-primary">
+              Quantity
+            </li>
+            <li className="font-dm  font-normal lg:font-bold text-sm lg:text-base text-primary">
+              Subtotal
+            </li>
+          </ul>
+
+          <>
+            <ul className="flex justify-between items-center  mt-5 bg-[#454449] py-2">
+              <li className="lg:w-32 w-16 pl-5 cursor-pointer">
+                <AiOutlineCloseSquare className="text-white lg:text-xl text-sm" />
+              </li>
+
+              <li className="lg:w-16 w-8 mr-1 ">
+                <img src="/images/p1.png" alt="p1" />
+              </li>
+
+              <li className="lg:w-[180px] px-4  font-dm font-medium text-xs text-center text-white">
+                Hasan
+              </li>
+
+              <li className="lg:w-[100px]  font-dm font-medium text-base  text-white">
+                500
+              </li>
+
+              <li className="font-dm  font-bold text-base mx-4 lg:mx-0 text-white border border-white flex justify-center gap-x-3 px-1 items-center ">
+                <button className="text-xl  text-white">-</button>
+                100
+                <button className="text-xl text-white">+</button>
+              </li>
+
+              <li className="lg:w-32  text-right pr-5 font-dm font-medium text-base text-white">
+                100
+              </li>
+            </ul>
+            <p className="font-dm font-medium text-xl pr-5 mt-12 text-right text-primary">
+              Tottal : 50000
+            </p>
+
+            <div className="flex justify-center mt-5 lg:gap-x-5 gap-x-2">
+              <div className="lg:w-6/12">
+                <button className="lg:px-14 px-4 py-2 lg:w-full rounded-[5px] duration-500  text-sm font-bold font-dm  border border-primary hover:bg-white hover:text-primary text-white bg-primary">
+                  CHECK OUT NOW
+                </button>
+              </div>
+
+              <div className="lg:w-5/12">
+                <button className="lg:px-14 px-4 py-2 lg:w-full rounded-[5px] duration-500  text-sm font-bold font-dm  border border-primary hover:bg-white hover:text-primary text-white bg-primary">
+                  VIEW CART
+                </button>
+              </div>
+            </div>
+          </>
+        </div>
+      </div>
     </div>
   );
 }

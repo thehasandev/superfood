@@ -9,18 +9,8 @@ export default function Details() {
         <h1 className="text-2xl font-bold uppercase text-[#444444] my-6">
           Shop
         </h1>
-        <div className="grid grid-cols-3 justify-between gap-5">
-          <div className="col-span-2">
-            <div className="mb-5">
-              <img className="w-full" src="/images/p1.png" alt="p1" />
-            </div>
-            <div className="grid grid-cols-3 gap-5">
-              <img src="/images/p1.png" alt="p1" />
-              <img src="/images/p1.png" alt="p1" />
-              <img src="/images/p1.png" alt="p1" />
-            </div>
-          </div>
-          <div>
+        <div className="grid grid-cols-5 justify-between gap-5">
+        <div className="col-span-3">
             <h2 className="text-3xl font-bold text-[#444444]">Flowering tea</h2>
             <h2 className="text-3xl font-bold text-[#444444] my-2">$190.00</h2>
             <div className="flex gap-2 text-orange-500  mb-8">
@@ -45,6 +35,17 @@ export default function Details() {
               Add To Cart
             </button>
           </div>
+          <div className="col-span-2">
+            <div className="mb-5">
+              <img className="w-full" src="/images/p1.png" alt="p1" />
+            </div>
+            <div className="grid grid-cols-3 gap-5">
+              <img src="/images/p1.png" alt="p1" />
+              <img src="/images/p1.png" alt="p1" />
+              <img src="/images/p1.png" alt="p1" />
+            </div>
+          </div>
+  
         </div>
 
         <h3 className="text-3xl text-black/80 my-10">Related Product</h3>

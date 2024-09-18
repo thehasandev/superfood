@@ -30,7 +30,7 @@ export default function Banner() {
         </div>
 
         {/* Sticky Icons  */}
-        <div className="hidden md:flex gap-4 flex-col fixed z-10 top-1/2 -translate-y-1/2 right-0 text-white">
+        <div className="hidden md:flex gap-4 flex-col fixed top-1/2 -translate-y-1/2 right-0 text-white">
           <div className="w-10 h-10 bg-pink-700 flex justify-center items-center">
             <GiSurroundedEye size={20} />
           </div>
