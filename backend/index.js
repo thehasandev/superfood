@@ -1,11 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const Rutes = require("./route");
 const app = express();
 const port = 8000;
 const path = require("path");
 
 // middlewire
+app.use(cors());
 app.use(express.json());
 app.use("/api/v1", Rutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
