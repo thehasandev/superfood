@@ -3,7 +3,8 @@ import Home from "../pages/Home";
 
 import Rootlayouts from "../components/Rootlayouts";
 import Error from "../Error";
-import CategoryList from "../pages/CategoryList";
+import CategoryList from "../pages/category/CategoryList";
+import AddCategory from "../pages/category/AddCategory";
 
 const routes = createBrowserRouter([
   {
@@ -16,8 +17,12 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/category-list",
+        path: "/categories",
         element: <CategoryList />,
+      },
+      {
+        path: "/categorie/add",
+        element: <AddCategory />,
       },
     ],
   },

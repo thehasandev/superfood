@@ -1,8 +1,10 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Card, IconButton, Typography } from "@material-tailwind/react";
-import { useGet } from "../components/ApiClient";
+import { useGet } from "../../components/ApiClient";
 import moment from "moment";
-import Loader from "../components/Loader";
+import Loader from "../../components/Loader";
+import BreadCrumb from "../../components/BreadCrumb";
+import { Link } from "react-router-dom";
 
 // Define a type for your category data
 
@@ -14,11 +16,31 @@ export default function CategoryList() {
     return <Loader />;
   }
 
-  const TABLE_HEAD = ["ID", "Categories", "CreatedAt", "CreatedBy", "Action"];
+  const TABLE_HEAD = [
+    "ID",
+    "Categories",
+    "CreatedAt",
+    "UpdateAt",
+    "CreatedBy",
+    "Action",
+  ];
 
   return (
     <Card {...({} as any)} className="w-full">
+      <BreadCrumb firstPage={"Categoreis"}/>
+
       <table className="w-full table-auto text-left">
+        <thead>
+          <tr>
+            <td colSpan={TABLE_HEAD.length} className="p-4 text-right">
+              <Link to={"/categorie/add"}>
+                <button className="px-4 py-2 bg-black/70 rounded-[4px] text-white text-sm">
+                  Create Category
+                </button>
+              </Link>
+            </td>
+          </tr>
+        </thead>
         <thead>
           <tr>
             {TABLE_HEAD.map((head) => (
@@ -42,7 +64,7 @@ export default function CategoryList() {
               .reverse()
               .map(
                 (
-                  { name, createdAt, createdBy }: any,
+                  { name, createdAt, createdBy, updateAt }: any,
                   index: number // Reverse the array for LIFO
                 ) => (
                   <tr key={index}>
@@ -52,7 +74,7 @@ export default function CategoryList() {
                         color="blue-gray"
                         {...({} as any)}
                       >
-                        {index + 1}
+                        {data.length - index}
                       </Typography>
                     </td>
                     <td className="p-4">
@@ -81,7 +103,18 @@ export default function CategoryList() {
                         className="font-normal text-gray-600"
                         {...({} as any)}
                       >
-                        {createdBy}
+                        {moment(updateAt)
+                          .format("MMMM Do YYYY, h:mm:ss a")
+                          .toLowerCase()}
+                      </Typography>
+                    </td>
+                    <td className="p-4">
+                      <Typography
+                        variant="small"
+                        className="font-normal text-gray-600"
+                        {...({} as any)}
+                      >
+                        {createdBy || "Admin"}
                       </Typography>
                     </td>
                     <td className="p-4">

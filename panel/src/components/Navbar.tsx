@@ -87,7 +87,7 @@ export default function Navbar() {
                 </ListItemPrefix>
                 Products
               </ListItem>
-              <Link to={"/category-list"}>
+              <Link to={"/categories"}>
                 <ListItem className="text-sm text-black/50" {...({} as any)}>
                   <ListItemPrefix {...({} as any)}>
                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
