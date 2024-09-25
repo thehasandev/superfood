@@ -1,17 +1,31 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Card, IconButton, Typography } from "@material-tailwind/react";
-import { useGet } from "../../components/ApiClient";
+import { useDelete, useGet } from "../../components/ApiClient";
 import moment from "moment";
 import Loader from "../../components/Loader";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
-
-// Define a type for your category data
+import { useEffect, useState } from "react";
 
 export default function CategoryList() {
-  const { isSuccess, data, isPending } = useGet("/product/categories");
+  const [deleteId, setDeleteId] = useState("");
+  const { isSuccess, data, isPending, refetch } = useGet("/product/categories");
+  const { request: deleteRequest, isSuccess: deleteSuccessFull } = useDelete(
+    `/product/delete-category?id=${deleteId}`
+  );
 
-  // Handle loading state
+  useEffect(() => {
+    if (deleteId) {
+      deleteRequest();
+    }
+  }, [deleteId, deleteRequest]);
+
+  useEffect(() => {
+    if (deleteSuccessFull && refetch) {
+      refetch();
+    }
+  }, [deleteSuccessFull, refetch]);
+
   if (isPending) {
     return <Loader />;
   }
@@ -27,7 +41,7 @@ export default function CategoryList() {
 
   return (
     <Card {...({} as any)} className="w-full">
-      <BreadCrumb firstPage={"Categoreis"}/>
+      <BreadCrumb firstPage={"Categoreis"} />
 
       <table className="w-full table-auto text-left">
         <thead>
@@ -64,7 +78,7 @@ export default function CategoryList() {
               .reverse()
               .map(
                 (
-                  { name, createdAt, createdBy, updateAt }: any,
+                  { _id, name, createdAt, createdBy, updateAt }: any,
                   index: number // Reverse the array for LIFO
                 ) => (
                   <tr key={index}>
@@ -122,7 +136,14 @@ export default function CategoryList() {
                         <IconButton variant="text" size="sm" {...({} as any)}>
                           <PencilIcon className="h-4 w-4 text-gray-900" />
                         </IconButton>
-                        <IconButton variant="text" size="sm" {...({} as any)}>
+                        <IconButton
+                          onClick={() => {
+                            setDeleteId(_id);
+                          }}
+                          variant="text"
+                          size="sm"
+                          {...({} as any)}
+                        >
                           <TrashIcon className="h-4 w-4 text-red-600" />
                         </IconButton>
                       </div>

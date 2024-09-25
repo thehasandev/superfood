@@ -43,24 +43,25 @@ export default function AddCategory() {
         secondPage="New Category"
       />
 
-      <form
-        className="m-4 flex flex-col gap-5"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <input
-          className="border border-black/50 w-full px-5 py-2"
-          {...register("name", { required: true })}
-          placeholder="Category Name"
-        />
-        {errors.name && <span>Name is required</span>}
+      <form className="m-4 flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <input
+            className="border border-black/50 w-full px-5 py-2"
+            {...register("name", { required: true })}
+            placeholder="Category Name"
+          />
+          {errors.name && <span className="text-xs text-red-600">Name is required*</span>}
+        </div>
 
-        <input
-          className="border border-black/50 w-full px-5 py-2"
-          {...register("discription", { required: true })}
-          placeholder="Category Discription"
-        />
+        <div>
+          <input
+            className="border border-black/50 w-full px-5 py-2"
+            {...register("discription", { required: true })}
+            placeholder="Category Discription"
+          />
 
-        {errors.discription && <span>Discription is required</span>}
+          {errors.discription && <span className="text-xs text-red-600">Discription is required*</span>}
+        </div>
 
         <button
           type="submit"
