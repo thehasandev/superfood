@@ -5,6 +5,7 @@ import Rootlayouts from "../components/Rootlayouts";
 import Error from "../Error";
 import CategoryList from "../pages/category/CategoryList";
 import AddCategory from "../pages/category/AddCategory";
+import EditCategory from "../pages/category/EditCategory";
 
 const routes = createBrowserRouter([
   {
@@ -21,8 +22,12 @@ const routes = createBrowserRouter([
         element: <CategoryList />,
       },
       {
-        path: "/categorie/add",
+        path: "/category/add",
         element: <AddCategory />,
+      },
+      {
+        path: "/categories/:id",
+        element: <EditCategory />,
       },
     ],
   },

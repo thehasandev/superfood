@@ -13,6 +13,7 @@ export default function CategoryList() {
   const { request: deleteRequest, isSuccess: deleteSuccessFull } = useDelete(
     `/product/delete-category?id=${deleteId}`
   );
+ 
 
   useEffect(() => {
     if (deleteId) {
@@ -47,7 +48,7 @@ export default function CategoryList() {
         <thead>
           <tr>
             <td colSpan={TABLE_HEAD.length} className="p-4 text-right">
-              <Link to={"/categorie/add"}>
+              <Link to={"/category/add"}>
                 <button className="px-4 py-2 bg-black/70 rounded-[4px] text-white text-sm">
                   Create Category
                 </button>
@@ -133,9 +134,11 @@ export default function CategoryList() {
                     </td>
                     <td className="p-4">
                       <div className="flex items-center gap-1">
-                        <IconButton variant="text" size="sm" {...({} as any)}>
-                          <PencilIcon className="h-4 w-4 text-gray-900" />
-                        </IconButton>
+                        <Link to={_id}>
+                          <IconButton variant="text" size="sm" {...({} as any)}>
+                            <PencilIcon className="h-4 w-4 text-gray-900" />
+                          </IconButton>
+                        </Link>
                         <IconButton
                           onClick={() => {
                             setDeleteId(_id);

@@ -6,7 +6,7 @@ interface BreadcrumbProps {
   firstPage: string;
   secondPage?: string;
   thirdPage?: string;
-  firstLink?: string;  // Add firstLink here
+  firstLink?: string; // Add firstLink here
   secondLink?: string;
   thirdLink?: string;
 }
@@ -15,20 +15,22 @@ export default function BreadCrumb({
   firstPage,
   secondPage,
   thirdPage,
-  firstLink = "/",  // Set default to home
+  firstLink = "/", // Set default to home
   secondLink,
   thirdLink,
 }: BreadcrumbProps) {
   return (
-    <div className="ml-4 mt-5 bg-white flex items-center">
-      <Link to="/" className="opacity-60 flex items-center">
+    <div className="ml-4 mt-5 bg-white flex items-center text-black">
+      <Link to="/" className="flex items-center">
         <IoMdHome />
       </Link>
 
       <span className="mx-2">/</span>
-      <span className="opacity-60">
+      <span>
         {secondPage || thirdPage ? (
-          <Link to={firstLink} className="opacity-60">  {/* Updated */}
+          <Link to={firstLink}>
+            {" "}
+            {/* Updated */}
             {firstPage}
           </Link>
         ) : (
@@ -39,11 +41,9 @@ export default function BreadCrumb({
       {secondPage && (
         <>
           <span className="mx-2">/</span>
-          <span className="opacity-60">
+          <span>
             {thirdPage ? (
-              <Link to={secondLink || "#"} className="opacity-60">
-                {secondPage}
-              </Link>
+              <Link to={secondLink || "#"}>{secondPage}</Link>
             ) : (
               secondPage
             )}
@@ -54,9 +54,7 @@ export default function BreadCrumb({
       {thirdPage && (
         <>
           <span className="mx-2">/</span>
-          <Link to={thirdLink || "#"} className="opacity-60">
-            {thirdPage}
-          </Link>
+          <Link to={thirdLink || "#"}>{thirdPage}</Link>
         </>
       )}
     </div>

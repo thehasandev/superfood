@@ -40,7 +40,7 @@ export default function AddCategory() {
       <BreadCrumb
         firstPage={"Categorei"}
         firstLink="/categories"
-        secondPage="New Category"
+        secondPage="Add New Category"
       />
 
       <form className="m-4 flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
