@@ -81,12 +81,14 @@ export default function Navbar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List {...({} as any)} className="p-0">
-              <ListItem className="text-sm text-black/50" {...({} as any)}>
-                <ListItemPrefix {...({} as any)}>
-                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                </ListItemPrefix>
-                Products
-              </ListItem>
+              <Link to={"/products"}>
+                <ListItem className="text-sm text-black/50" {...({} as any)}>
+                  <ListItemPrefix {...({} as any)}>
+                    <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                  </ListItemPrefix>
+                  Products
+                </ListItem>
+              </Link>
               <Link to={"/categories"}>
                 <ListItem className="text-sm text-black/50" {...({} as any)}>
                   <ListItemPrefix {...({} as any)}>

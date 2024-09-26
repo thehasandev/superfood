@@ -15,16 +15,15 @@ const _ = express.Router();
 
 _.get("/categories", allCategoreisController);
 _.get("/categori", singleCategoryController);
-_.get("/category",getProductByCategoryController)
+_.get("/category", getProductByCategoryController);
 _.post("/create-category", createCategoryController);
 _.delete("/delete-category", deleteCategoryController);
-_.patch("/update-category", updateCategoryController);
+_.put("/update-category", updateCategoryController);
 
 _.post("/create-product", upload.single("image"), productCreateController);
 _.get("/allproduct", allProductsController);
 _.get("/product", singleProductController);
-_.patch("/update-product", productEditContoroller);
+_.put("/update-product", productEditContoroller);
 _.delete("/delete-product", productDeleteController);
-
 
 module.exports = _;

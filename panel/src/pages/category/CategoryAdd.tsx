@@ -2,55 +2,45 @@ import { Card } from "@material-tailwind/react";
 
 import BreadCrumb from "../../components/BreadCrumb";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import { useGet, usePut } from "../../components/ApiClient";
 import Loader from "../../components/Loader";
+import { usePost } from "../../components/ApiClient";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
   name: string;
   discription: string;
 };
 
-type Params = {
-  id: string;
-};
-
-export default function EditCategory() {
-  const { id } = useParams<Params>();
-  const { data, isPending } = useGet(`/product/categori?id=${id}`);
+export default function CategoryAdd() {
+  const { request, isPending, isSuccess } = usePost(`/product/create-category`);
   const navigate = useNavigate();
-  const {
-    data: updateData,
-    isSuccess: updateSucessfull,
-    request,
-  } = usePut(`/product/update-category?id=${id}`);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const newCategory = {
+      name: data.name,
+      description: data.discription,
+    };
 
-  if (updateSucessfull) {
-    navigate("/categories");
-  }
+    request(newCategory);
+  };
+
   if (isPending) {
     return <Loader />;
   }
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const updateCategory = {
-      name: data?.name,
-      description: data?.discription,
-    };
-    request(updateCategory);
-  };
+  if (isSuccess) {
+    navigate("/categories");
+  }
 
   return (
     <Card {...({} as any)} className="w-full">
       <BreadCrumb
         firstPage={"Categorei"}
         firstLink="/categories"
-        secondPage="Edit Category"
+        secondPage="Add New Category"
       />
 
       <form
@@ -60,7 +50,6 @@ export default function EditCategory() {
         <div>
           <input
             className="border border-black/50 w-full px-5 py-2"
-            defaultValue={data?.name}
             {...register("name", { required: true })}
             placeholder="Category Name"
           />
@@ -72,7 +61,6 @@ export default function EditCategory() {
         <div>
           <input
             className="border border-black/50 w-full px-5 py-2"
-            defaultValue={data?.description}
             {...register("discription", { required: true })}
             placeholder="Category Discription"
           />
@@ -88,7 +76,7 @@ export default function EditCategory() {
           type="submit"
           className=" bg-black/70 text-white px-5 py-2 rounded-[5px] cursor-pointer w-44"
         >
-          Edit Category
+          Add To Category
         </button>
       </form>
     </Card>

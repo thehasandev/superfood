@@ -4,8 +4,10 @@ import Home from "../pages/Home";
 import Rootlayouts from "../components/Rootlayouts";
 import Error from "../Error";
 import CategoryList from "../pages/category/CategoryList";
-import AddCategory from "../pages/category/AddCategory";
-import EditCategory from "../pages/category/EditCategory";
+import ProductList from "../pages/product/ProductList";
+import ProductAdd from "../pages/product/ProductAdd";
+import CategoryAdd from "../pages/category/CategoryAdd";
+import CategoryEdit from "../pages/category/CategoryEdit";
 
 const routes = createBrowserRouter([
   {
@@ -23,11 +25,19 @@ const routes = createBrowserRouter([
       },
       {
         path: "/category/add",
-        element: <AddCategory />,
+        element: <CategoryAdd />,
       },
       {
         path: "/categories/:id",
-        element: <EditCategory />,
+        element: <CategoryEdit />,
+      },
+      {
+        path: "/products",
+        element: <ProductList />,
+      },
+      {
+        path: "/product/add",
+        element: <ProductAdd />,
       },
     ],
   },

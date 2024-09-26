@@ -1,30 +1,15 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Card, IconButton, Typography } from "@material-tailwind/react";
-import { useDelete, useGet } from "../../components/ApiClient";
+
 import moment from "moment";
 import Loader from "../../components/Loader";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useGet } from "../../components/ApiClient";
+import { getImgUrl } from "../../utils/getImgUrl";
 
-export default function CategoryList() {
-  const [deleteId, setDeleteId] = useState("");
-  const { isSuccess, data, isPending, refetch } = useGet("/product/categories");
-  const { request: deleteRequest, isSuccess: deleteSuccessFull } = useDelete(
-    `/product/delete-category?id=${deleteId}`
-  );
-
-  useEffect(() => {
-    if (deleteId) {
-      deleteRequest();
-    }
-  }, [deleteId, deleteRequest]);
-
-  useEffect(() => {
-    if (deleteSuccessFull && refetch) {
-      refetch();
-    }
-  }, [deleteSuccessFull, refetch]);
+export default function ProductList() {
+  const { isSuccess, data, isPending } = useGet("/product/allproduct");
 
   if (isPending) {
     return <Loader />;
@@ -32,24 +17,27 @@ export default function CategoryList() {
 
   const TABLE_HEAD = [
     "ID",
-    "Categories",
+    "Name",
+    "Image",
+    "Price",
+    "Category",
+    "Description",
     "CreatedAt",
-    "UpdateAt",
     "CreatedBy",
     "Action",
   ];
 
   return (
     <Card {...({} as any)} className="w-full">
-      <BreadCrumb firstPage={"Categoreis"} />
+      <BreadCrumb firstPage={"Products"} />
 
       <table className="w-full table-auto text-left">
         <thead>
           <tr>
             <td colSpan={TABLE_HEAD.length} className="p-4 text-right">
-              <Link to={"/category/add"}>
+              <Link to={"/product/add"}>
                 <button className="px-4 py-2 bg-black/70 rounded-[4px] text-white text-sm">
-                  Create Category
+                  Create Product
                 </button>
               </Link>
             </td>
@@ -78,7 +66,16 @@ export default function CategoryList() {
               .reverse()
               .map(
                 (
-                  { _id, name, createdAt, createdBy, updateAt }: any,
+                  {
+                    _id,
+                    name,
+                    image,
+                    price,
+                    category,
+                    description,
+                    createdAt,
+                    createdBy,
+                  }: any,
                   index: number // Reverse the array for LIFO
                 ) => (
                   <tr key={index}>
@@ -103,12 +100,39 @@ export default function CategoryList() {
                     <td className="p-4">
                       <Typography
                         variant="small"
-                        className="font-normal text-gray-600"
+                        className="font-bold capitalize"
                         {...({} as any)}
                       >
-                        {moment(createdAt)
-                          .format("MMMM Do YYYY, h:mm:ss a")
-                          .toLowerCase()}
+                        <div className="w-16">
+                          <img src={getImgUrl(image)} alt="alt" />
+                        </div>
+                      </Typography>
+                    </td>
+                    <td className="p-4">
+                      <Typography
+                        variant="small"
+                        className="font-bold capitalize"
+                        {...({} as any)}
+                      >
+                        {price}
+                      </Typography>
+                    </td>
+                    <td className="p-4">
+                      <Typography
+                        variant="small"
+                        className="font-bold capitalize"
+                        {...({} as any)}
+                      >
+                        {category?.name}
+                      </Typography>
+                    </td>
+                    <td className="p-4">
+                      <Typography
+                        variant="small"
+                        className="text-xs capitalize"
+                        {...({} as any)}
+                      >
+                        {description}
                       </Typography>
                     </td>
                     <td className="p-4">
@@ -117,11 +141,12 @@ export default function CategoryList() {
                         className="font-normal text-gray-600"
                         {...({} as any)}
                       >
-                        {moment(updateAt)
+                        {moment(createdAt)
                           .format("MMMM Do YYYY, h:mm:ss a")
                           .toLowerCase()}
                       </Typography>
                     </td>
+
                     <td className="p-4">
                       <Typography
                         variant="small"
@@ -139,9 +164,9 @@ export default function CategoryList() {
                           </IconButton>
                         </Link>
                         <IconButton
-                          onClick={() => {
-                            setDeleteId(_id);
-                          }}
+                          //   onClick={() => {
+                          //     setDeleteId(_id);
+                          //   }}
                           variant="text"
                           size="sm"
                           {...({} as any)}
