@@ -14,6 +14,7 @@ export default function CategoryList() {
     `/product/delete-category?id=${deleteId}`
   );
 
+  
   useEffect(() => {
     if (deleteId) {
       deleteRequest();

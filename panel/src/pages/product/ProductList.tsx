@@ -5,12 +5,28 @@ import moment from "moment";
 import Loader from "../../components/Loader";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
-import { useGet } from "../../components/ApiClient";
+import { useDelete, useGet } from "../../components/ApiClient";
 import { getImgUrl } from "../../utils/getImgUrl";
+import { useEffect, useState } from "react";
 
 export default function ProductList() {
-  const { isSuccess, data, isPending } = useGet("/product/allproduct");
+  const [deleteId, setDeleteId] = useState("");
+  const { isSuccess, data, isPending, refetch } = useGet("/product/allproduct");
+  const { request: deleteRequest, isSuccess: deleteSuccessFull } = useDelete(
+    `product/delete-product?id=${deleteId}`
+  );
 
+  useEffect(() => {
+    if (deleteId) {
+      deleteRequest();
+    }
+  }, [deleteId, deleteRequest]);
+
+  useEffect(() => {
+    if (deleteSuccessFull && refetch) {
+      refetch();
+    }
+  }, [deleteSuccessFull, refetch]);
   if (isPending) {
     return <Loader />;
   }
@@ -164,9 +180,9 @@ export default function ProductList() {
                           </IconButton>
                         </Link>
                         <IconButton
-                          //   onClick={() => {
-                          //     setDeleteId(_id);
-                          //   }}
+                          onClick={() => {
+                            setDeleteId(_id);
+                          }}
                           variant="text"
                           size="sm"
                           {...({} as any)}
@@ -186,7 +202,7 @@ export default function ProductList() {
                   className="font-normal text-gray-600"
                   {...({} as any)}
                 >
-                  No categories found.
+                  No products found.
                 </Typography>
               </td>
             </tr>
