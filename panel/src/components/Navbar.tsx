@@ -33,7 +33,7 @@ export default function Navbar() {
         {/* Avatar image */}
         <div className="mt-4 flex items-center">
           <img
-            src="https://via.placeholder.com/40" // Replace with your avatar URL
+            src="https://via.placeholder.com/40"
             alt="Avatar"
             className="h-14 w-14 rounded-full"
           />

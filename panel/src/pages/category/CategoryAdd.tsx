@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 type Inputs = {
   name: string;
-  discription: string;
+  description: string;
 };
 
 export default function CategoryAdd() {
@@ -22,7 +22,7 @@ export default function CategoryAdd() {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const newCategory = {
       name: data.name,
-      description: data.discription,
+      description: data.description,
     };
 
     request(newCategory);
@@ -61,13 +61,13 @@ export default function CategoryAdd() {
         <div>
           <input
             className="border border-black/50 w-full px-5 py-2"
-            {...register("discription", { required: true })}
-            placeholder="Category Discription"
+            {...register("description", { required: true })}
+            placeholder="Category Description"
           />
 
-          {errors.discription && (
+          {errors.description && (
             <span className="text-xs text-red-600">
-              Discription is required*
+              Description is required*
             </span>
           )}
         </div>

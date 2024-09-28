@@ -8,6 +8,7 @@ import ProductList from "../pages/product/ProductList";
 import ProductAdd from "../pages/product/ProductAdd";
 import CategoryAdd from "../pages/category/CategoryAdd";
 import CategoryEdit from "../pages/category/CategoryEdit";
+import ProductEdit from "../pages/product/ProductEdit";
 
 const routes = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const routes = createBrowserRouter([
       {
         path: "/product/add",
         element: <ProductAdd />,
+      },
+      {
+        path: "/products/:id",
+        element: <ProductEdit />,
       },
     ],
   },

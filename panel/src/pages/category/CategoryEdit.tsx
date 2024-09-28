@@ -8,7 +8,7 @@ import Loader from "../../components/Loader";
 
 type Inputs = {
   name: string;
-  discription: string;
+  description: string;
 };
 
 type Params = {
@@ -38,7 +38,7 @@ export default function CategoryEdit() {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const updateCategory = {
       name: data?.name,
-      description: data?.discription,
+      description: data?.description,
     };
     request(updateCategory);
   };
@@ -71,13 +71,13 @@ export default function CategoryEdit() {
           <input
             className="border border-black/50 w-full px-5 py-2"
             defaultValue={data?.description}
-            {...register("discription", { required: true })}
-            placeholder="Category Discription"
+            {...register("description", { required: true })}
+            placeholder="Category Description"
           />
 
-          {errors.discription && (
+          {errors.description && (
             <span className="text-xs text-red-600">
-              Discription is required*
+              Description is required*
             </span>
           )}
         </div>
@@ -86,7 +86,7 @@ export default function CategoryEdit() {
           type="submit"
           className=" bg-black/70 text-white px-5 py-2 rounded-[5px] cursor-pointer w-44"
         >
-          Edit Category
+          Update Category
         </button>
       </form>
     </Card>

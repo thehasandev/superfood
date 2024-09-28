@@ -3,6 +3,7 @@ const Category = require("../model/categorySchema");
 const mongoose = require('mongoose');
 
 const productCreateController = async (req, res) => {
+  
   try {
     const { name, description, price, category } = req.body;
 

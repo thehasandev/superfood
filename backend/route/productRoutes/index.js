@@ -22,8 +22,8 @@ _.put("/update-category", updateCategoryController);
 
 _.post("/create-product", upload.single("image"), productCreateController);
 _.get("/allproduct", allProductsController);
-_.get("/product", singleProductController);
-_.put("/update-product", productEditContoroller);
+_.get("/single-product", singleProductController);
+_.put("/update-product", upload.single("image"), productEditContoroller);
 _.delete("/delete-product", productDeleteController);
 
 module.exports = _;

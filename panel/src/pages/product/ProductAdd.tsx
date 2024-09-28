@@ -27,6 +27,8 @@ export default function ProductAdd() {
 
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  console.log(selectedImage);
+  
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -38,7 +40,6 @@ export default function ProductAdd() {
     if (selectedImage) {
       formData.append("image", selectedImage); // Append the selected image file
     }
-
     request(formData);
   };
 
@@ -71,6 +72,7 @@ export default function ProductAdd() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div>
+          <p className="text-xs mb-1 font-bold text-black/50">Category</p>
           <select
             className="border border-black/50 w-full px-5 py-2"
             {...register("category", { required: true })}
@@ -88,6 +90,7 @@ export default function ProductAdd() {
         </div>
 
         <div>
+          <p className="text-xs mb-1 font-bold text-black/50">Name</p>
           <input
             className="border border-black/50 w-full px-5 py-2"
             {...register("name", { required: true })}
@@ -99,6 +102,7 @@ export default function ProductAdd() {
         </div>
 
         <div>
+          <p className="text-xs mb-1 font-bold text-black/50">Price</p>
           <input
             className="border border-black/50 w-full px-5 py-2"
             {...register("price", { required: true })}
@@ -110,6 +114,7 @@ export default function ProductAdd() {
         </div>
 
         <div>
+          <p className="text-xs mb-1 font-bold text-black/50">Description</p>
           <input
             className="border border-black/50 w-full px-5 py-2"
             {...register("description", { required: true })}
@@ -131,6 +136,7 @@ export default function ProductAdd() {
             <MdImage className="text-gray-500 mr-2" size={24} />
             <span>Upload Image</span>
           </label>
+
           <input
             id="image-upload"
             type="file"
@@ -150,7 +156,7 @@ export default function ProductAdd() {
             <img
               src={imagePreview}
               alt="Selected"
-              className="w-1/2 object-cover border border-gray-300"
+              className="w-96 object-cover border border-gray-300"
             />
           </div>
         )}
