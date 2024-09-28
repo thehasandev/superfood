@@ -26,7 +26,7 @@ export default function ProductEdit() {
     `/product/update-product?id=${id}`
   );
 
-  const [files, setFiles] = useState("");
+  const [files, setFiles] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
 
@@ -36,31 +36,30 @@ export default function ProductEdit() {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    const testData = new FormData();
-    testData.append("name", data.name);
-    testData.append("price", data.price);
-    testData.append("description", data.description);
-    testData.append("category", data.category);
-    testData.append("image", files);
+  useEffect(() => {
+    if (data?.image && !previewImage) {
+      setPreviewImage(data.image);
+    }
+  }, [data, previewImage]);
 
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("price", data.price);
+    formData.append("description", data.description);
+    formData.append("category", data.category);
+    if (files) {
+      formData.append("image", files);
+    }
     request(formData);
   };
-
-  if (isPending) {
-    return <Loader />;
-  }
-
-  if (!previewImage && data.image) {
-    setPreviewImage(data.image);
-  }
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (file) {
       setFiles(file);
-      setPreviewImage(URL.createObjectURL(file));
+      setPreviewImage(URL.createObjectURL(file)); // Set preview image to show selected file
     } else {
       console.log("No file selected.");
     }
@@ -69,6 +68,13 @@ export default function ProductEdit() {
   const handleImageClick = () => {
     imageInputRef.current?.click();
   };
+
+  if (isPending) {
+    return <Loader />;
+  }
+  if (updateSucessfull) {
+    navigate("/products");
+  }
 
   return (
     <Card {...({} as any)} className="w-full">
@@ -147,16 +153,10 @@ export default function ProductEdit() {
           <input
             className="hidden"
             type="file"
-            {...register("image", { required: !previewImage })}
-            placeholder="Product Image"
+            {...register("image")}
             onChange={handleImageChange}
             ref={imageInputRef}
           />
-          {errors.image && (
-            <span className="text-xs text-red-600">
-              Product image is required*
-            </span>
-          )}
         </div>
 
         <div>
