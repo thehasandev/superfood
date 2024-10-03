@@ -1,9 +1,10 @@
 const express = require("express");
+
+const upload = require("../../middleware/multer");
 const productCreateController = require("../../controllers/productCreateControllers");
 const productDeleteController = require("../../controllers/productDeleteController");
 const productEditContoroller = require("../../controllers/productEditContoroller");
 const allProductsController = require("../../controllers/allProductsController");
-const upload = require("../../middleware/multer");
 const createCategoryController = require("../../controllers/createCategory");
 const deleteCategoryController = require("../../controllers/deleteCategoryController");
 const updateCategoryController = require("../../controllers/updateCategoryController");

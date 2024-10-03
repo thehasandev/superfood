@@ -9,15 +9,15 @@ import ProductAdd from "../pages/product/ProductAdd";
 import CategoryAdd from "../pages/category/CategoryAdd";
 import CategoryEdit from "../pages/category/CategoryEdit";
 import ProductEdit from "../pages/product/ProductEdit";
+import Login from "../pages/login/Login";
 
 const routes = createBrowserRouter([
   {
-    path: "/",
     element: <Rootlayouts />,
     errorElement: <Error />,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <Home />,
       },
       {
@@ -45,6 +45,10 @@ const routes = createBrowserRouter([
         element: <ProductEdit />,
       },
     ],
+  },
+  {
+    path: "/",
+    element: <Login />,
   },
 ]);
 
