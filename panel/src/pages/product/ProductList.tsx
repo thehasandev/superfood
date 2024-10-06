@@ -50,7 +50,8 @@ export default function ProductList() {
       <table className="w-full table-auto text-left">
         <thead>
           <tr>
-            <td colSpan={TABLE_HEAD.length} className="p-4 text-right">
+
+            <td colSpan={TABLE_HEAD.length} className="pr-4 text-right">
               <Link to={"/product/add"}>
                 <button className="px-4 py-2 bg-black/70 rounded-[4px] text-white text-sm">
                   Create Product
@@ -169,7 +170,7 @@ export default function ProductList() {
                         className="font-normal text-gray-600"
                         {...({} as any)}
                       >
-                        {createdBy || "Admin"}
+                        {createdBy?.name || "Admin"}
                       </Typography>
                     </td>
                     <td className="p-4">

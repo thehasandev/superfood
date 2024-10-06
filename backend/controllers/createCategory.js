@@ -1,7 +1,7 @@
-const Category = require('../model/categorySchema');
+const Category = require("../model/categorySchema");
 const createCategoryController = async (req, res) => {
   try {
-    const { name, description } = req.body;
+    const { name, description, createdBy } = req.body;
 
     // Check if category already exists
     const existingCategory = await Category.findOne({ name });
@@ -12,6 +12,7 @@ const createCategoryController = async (req, res) => {
     const newCategory = new Category({
       name,
       description,
+      createdBy,
     });
 
     await newCategory.save();

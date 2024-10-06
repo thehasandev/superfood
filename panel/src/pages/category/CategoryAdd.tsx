@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Loader from "../../components/Loader";
 import { usePost } from "../../components/ApiClient";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 type Inputs = {
   name: string;
@@ -14,6 +15,8 @@ type Inputs = {
 export default function CategoryAdd() {
   const { request, isPending, isSuccess } = usePost(`/product/create-category`);
   const navigate = useNavigate();
+  const { user } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -23,6 +26,7 @@ export default function CategoryAdd() {
     const newCategory = {
       name: data.name,
       description: data.description,
+      createdBy: user.data.user._id,
     };
 
     request(newCategory);

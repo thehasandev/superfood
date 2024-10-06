@@ -1,13 +1,16 @@
 import { Outlet } from "react-router-dom";
-// import Footer from "./Footer";
 import Navbar from "./Navbar";
+import User from "./User";
 
 export default function Rootlayouts() {
   return (
     <div className="flex gap-5">
       <Navbar />
-      <Outlet />
-      {/* <Footer /> */}
+      <div className="w-full">
+        <User />
+
+        <Outlet />
+      </div>
     </div>
   );
 }

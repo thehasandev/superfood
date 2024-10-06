@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useGet, usePost } from "../../components/ApiClient";
 import Loader from "../../components/Loader";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 type Inputs = {
   name: string;
@@ -19,6 +20,7 @@ export default function ProductAdd() {
   const { data: categoryData, isPending } = useGet("/product/categories");
   const { request, isSuccess } = usePost("/product/create-product");
 
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -27,8 +29,8 @@ export default function ProductAdd() {
 
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  console.log(selectedImage);
-  
+ 
+
   const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -37,6 +39,7 @@ export default function ProductAdd() {
     formData.append("price", data.price);
     formData.append("description", data.description);
     formData.append("category", data.category);
+    formData.append("createdBy", user.data.user._id);
     if (selectedImage) {
       formData.append("image", selectedImage); // Append the selected image file
     }

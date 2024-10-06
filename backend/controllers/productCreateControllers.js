@@ -1,11 +1,10 @@
 const Product = require("../model/productSchema");
 const Category = require("../model/categorySchema");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const productCreateController = async (req, res) => {
-  
   try {
-    const { name, description, price, category } = req.body;
+    const { name, description, price, category, createdBy } = req.body;
 
     // Validate category ID
     if (!mongoose.Types.ObjectId.isValid(category)) {
@@ -32,6 +31,7 @@ const productCreateController = async (req, res) => {
       price,
       category,
       image,
+      createdBy,
     });
 
     await newProduct.save();
@@ -42,4 +42,3 @@ const productCreateController = async (req, res) => {
 };
 
 module.exports = productCreateController;
-

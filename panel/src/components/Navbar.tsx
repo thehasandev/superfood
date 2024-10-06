@@ -15,9 +15,11 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navbar() {
   const [open, setOpen] = React.useState<number>(0);
+  const { user } = useAuth();
 
   const handleOpen = (value: number) => {
     setOpen(open === value ? 0 : value);
@@ -28,25 +30,6 @@ export default function Navbar() {
       {...({} as any)}
       className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5"
     >
-      {/* Sidebar Title and Avatar */}
-      <div className="mb-4 p-4">
-        {/* Avatar image */}
-        <div className="mt-4 flex items-center">
-          <img
-            src="https://via.placeholder.com/40"
-            alt="Avatar"
-            className="h-14 w-14 rounded-full"
-          />
-          <Typography
-            {...({} as any)}
-            variant="small"
-            className="ml-4 font-medium"
-          >
-            Username
-          </Typography>
-        </div>
-      </div>
-
       <List {...({} as any)}>
         {/* Dashboard Menu */}
         <Accordion
@@ -75,7 +58,7 @@ export default function Navbar() {
                 color="blue-gray"
                 className="mr-auto font-normal"
               >
-                Dashboard
+                Super Food Control
               </Typography>
             </AccordionHeader>
           </ListItem>

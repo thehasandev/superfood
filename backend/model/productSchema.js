@@ -24,6 +24,11 @@ const productSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", 
+      required: true,
+    },
   },
   { timestamps: true }
 );

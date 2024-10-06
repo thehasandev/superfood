@@ -21,7 +21,7 @@ export default function BreadCrumb({
 }: BreadcrumbProps) {
   return (
     <div className="ml-4 mt-5 bg-white flex items-center text-black">
-      <Link to="/" className="flex items-center">
+      <Link to="/home" className="flex items-center">
         <IoMdHome />
       </Link>
 
