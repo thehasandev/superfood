@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "./Container";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
@@ -13,14 +13,22 @@ import { GrFormClose } from "react-icons/gr";
 
 const list = [
   { name: "Home", link: "/" },
-  { name: "Pages", link: "/pages" },
-  { name: "Portfolio", link: "/portfolio" },
   { name: "Blog", link: "/blog" },
   { name: "Shop", link: "/shop" },
+  {
+    name: "Categories",
+    link: "kkkk",
+    moreList: [
+      {
+        name: "banana",
+        link: "banana",
+      },
+    ],
+  },
   { name: "Contact", link: "/contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ data }: any) {
   const [isSticky, setIsSticky] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -50,7 +58,6 @@ export default function Navbar() {
   };
 
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
-console.log(isOpenSidebar);
 
   return (
     <div
@@ -91,20 +98,32 @@ console.log(isOpenSidebar);
                 isSticky ? "text-black" : "text-white"
               }`}
             >
-              {list.map((item, index) => (
+              {list.map((item: any, index: number) => (
                 <li
                   key={index}
                   onClick={() => handleBradcrumb(item)}
-                  className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
+                  className={`relative group after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
                     isSticky
                       ? "after:bg-[#111111] hover:text-[#111111]"
                       : "after:bg-white"
                   }`}
                 >
                   <Link href={item.link}>{item.name}</Link>
+
+                  <ul
+                    className={`flex flex-col gap-4 py-5 -left-4 justify-center absolute top-5  scale-y-0 origin-top duration-500  z-[99999] w-32 pl-4 bg-white text-black/80 font-semibold text-base capitalize ${
+                      item.moreList && "group-hover:scale-y-100"
+                    }`}
+                  >
+                    {item.moreList &&
+                      item.moreList.map((subList: any) => (
+                        <li key={subList.name}>{subList.name}</li>
+                      ))}
+                  </ul>
                 </li>
               ))}
             </ul>
+
             {/* mobile Navbar  */}
 
             <ul
@@ -112,7 +131,7 @@ console.log(isOpenSidebar);
                 open ? "scale-y-100 duration-700" : "scale-y-0"
               } origin-top`}
             >
-              {list.map((item, index) => (
+              {list.map((item: any, index: number) => (
                 <li
                   onClick={() => handleBradcrumb(item)}
                   key={index}

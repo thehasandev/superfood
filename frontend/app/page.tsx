@@ -6,13 +6,58 @@ import Product from "./components/Product";
 import Rating from "./components/Rating";
 import Slider from "./components/Slider";
 import Testomonia from "./components/Testomonia";
+import { getData } from "./utils/fetch";
 
-export default function Home() {
+export default async function Home() {
+  const [CoffeData, BurgerData, PizzaData, TeaData] = await Promise.all([
+    getData("/product/category?name=Coffee"),
+    getData("/product/category?name=Burger"),
+    getData("/product/category?name=Pizza"),
+    getData("/product/category?name=Tea"),
+  ]);
+
   return (
     <>
       <Banner />
       <Info />
-      <Product />
+
+      {/*====================== For coffee  ====================*/}
+      <Product
+        data={CoffeData.products.splice(0, 8)}
+        title="Awaken Your Senses: The Art of Coffee"
+        intro="Indulge in the rich aroma and bold flavors of freshly brewed coffee. Whether you crave a smooth latte or a robust espresso, our selection has something for every coffee lover."
+      />
+
+      {/*====================== For coffee  =====================*/}
+      {/*====================== For burger  =====================*/}
+      <Product
+        data={BurgerData.products}
+        title="The Craft of Gourmet Burgers"
+        intro="Dive into a world of mouthwatering perfection with our expertly crafted burgers. From juicy beef patties to creative toppings, each bite offers a savory experience that satisfies every burger lover's craving."
+      />
+
+      {/*====================== For burger  =====================*/}
+
+      {/*====================== For pizza  =====================*/}
+      <div>
+        <Product
+          data={PizzaData.products}
+          title="The Craft of Gourmet Pizzas"
+          intro="Savor the irresistible flavors and delightful textures of our gourmet pizzas. Whether you crave a classic Margherita or a bold BBQ chicken, our selection takes you on a delicious journey through the world of artisan pizza-making."
+        />
+      </div>
+      {/*====================== For pizza  =====================*/}
+
+      {/*====================== For tea  =====================*/}
+      <div>
+        <Product
+          data={TeaData.products}
+          title="The Elegance of Exquisite Tea"
+          intro="Immerse yourself in the soothing world of fine teas. From fragrant blends to delicate flavors, each sip provides a calming experience that delights every tea enthusiast's palate."
+        />
+      </div>
+      {/*====================== For tea  =====================*/}
+
       <Counter />
       <Testomonia />
       <Slider />

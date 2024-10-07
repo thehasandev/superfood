@@ -5,9 +5,11 @@ import Container from "../../components/Container";
 import { FaSearch } from "react-icons/fa";
 import FilterForm from "@/app/components/FilterForm";
 import NextPagination from "@/app/components/NextPagination";
-export default function Shop() {
-  return (
+import { getData } from "@/app/utils/fetch";
 
+export default async function Shop() {
+  const Products = await getData("/product/allproduct");
+  return (
     <section className="py-20 px-3 xl:px-0">
       <Container>
         <BreadCrumb currentPage="Shop" />
@@ -66,8 +68,8 @@ export default function Shop() {
               {/*================ Rated Products =================*/}
               <div>
                 <p className="text-xl my-5">Top Rated Products</p>
-                {Data?.map(
-                  (item, index) =>
+                {Products?.map(
+                  (item: any, index: number) =>
                     index > 2 && (
                       <Cart
                         type="horizontal"

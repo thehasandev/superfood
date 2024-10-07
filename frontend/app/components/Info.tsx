@@ -4,7 +4,7 @@ import Container from "./Container";
 
 export default function Info() {
   return (
-    <div className="bg-[#F7F5F2] px-3 xl:px-0">
+    <div className="bg-[#F7F5F2] px-3 xl:px-0 mb-8">
       <Container>
         <div className="grid grid-cols-3 justify-between gap-6 py-20">
           <div className="flex flex-col gap-4 justify-between col-span-3 md:col-span-1">
