@@ -1,4 +1,5 @@
-import Data from "../../data/product";
+"use client"; // Make sure this is marked as a client component
+import { useEffect, useState } from "react"; // Import useState and useEffect
 import Cart from "../../components/Cart";
 import BreadCrumb from "../../components/Breadcrumb";
 import Container from "../../components/Container";
@@ -7,8 +8,38 @@ import FilterForm from "@/app/components/FilterForm";
 import NextPagination from "@/app/components/NextPagination";
 import { getData } from "@/app/utils/fetch";
 
-export default async function Shop() {
-  const Products = await getData("/product/allproduct");
+export default function Shop() {
+  const [products, setProducts] = useState([]); // Stores all products
+  const [filterProduct, setFilterProduct] = useState([]); // Stores filtered products
+  const [filterChange, setFilterChange] = useState(""); // Stores filter value
+
+  // Fetch products once on component mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await getData("/product/allproduct");
+        setProducts(fetchedProducts); // Set all products
+        setFilterProduct(fetchedProducts); // Set default filtered products to all products
+      } catch (err) {
+        console.error("Error fetching products", err);
+      }
+    };
+
+    fetchProducts();
+  }, []); // Run only once on mount
+
+  // Apply filter when `filterChange` or `products` changes
+  useEffect(() => {
+    if (filterChange) {
+      const filtered = products.filter(
+        (product: any) => product.price < filterChange
+      );
+      setFilterProduct(filtered); // Set filtered products
+    } else {
+      setFilterProduct(products); // Reset to all products when no filter is applied
+    }
+  }, [filterChange, products]);
+
   return (
     <section className="py-20 px-3 xl:px-0">
       <Container>
@@ -19,18 +50,21 @@ export default async function Shop() {
             <div className="col-span-4 xl:col-span-3">
               <div className="flex justify-between items-center">
                 <p className="text-lg text-gray-400">
-                  Showing 1–12 of 28 results
+                  Showing 1–12 of {filterProduct.length} results {/* Show filtered product count */}
                 </p>
-                <select className="border border-black/20 focus:none px-10 py-2 text-black/50 outline-none">
-                  <option value="1">one</option>
-                  <option value="2">two</option>
-                  <option value="3">three</option>
-                  <option value="4">four</option>
-                </select>
+                <div>
+                  <FilterForm onChange={setFilterChange} /> {/* Filter form */}
+                </div>
               </div>
 
-              {/* All Products   */}
-              <NextPagination itemsPerPage={12} />
+              {/* Show filtered products or empty message */}
+              {filterProduct.length > 0 ? (
+                <NextPagination data={filterProduct} />
+              ) : (
+                <p className="text-center text-gray-500 mt-10">
+                  No products found matching your filter.
+                </p>
+              )}
             </div>
 
             {/*=============== Search Product  ================*/}
@@ -45,17 +79,11 @@ export default async function Shop() {
                 <FaSearch className="absolute top-1/2 -translate-y-1/2 right-4 text-black/25" />
               </div>
 
-              {/*====================== Filter by price ======================*/}
-              <div>
-                <p className="text-xl my-4">Filter by price</p>
-                <FilterForm />
-              </div>
-
               {/*=============== All Categories  ===============*/}
               <div>
                 <p className="text-xl my-5">Categories</p>
                 <ul className="text-base text-black/50 flex flex-col gap-2">
-                  <li>Fruit Bowl </li>
+                  <li>Fruit Bowl</li>
                   <li>Ice Cream</li>
                   <li>Shake</li>
                   <li>Smoothie</li>
@@ -68,7 +96,7 @@ export default async function Shop() {
               {/*================ Rated Products =================*/}
               <div>
                 <p className="text-xl my-5">Top Rated Products</p>
-                {Products?.map(
+                {products?.map(
                   (item: any, index: number) =>
                     index > 2 && (
                       <Cart
