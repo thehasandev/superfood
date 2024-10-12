@@ -3,7 +3,10 @@ import Cart from "@/app/components/Cart";
 import Container from "@/app/components/Container";
 import { getData } from "@/app/utils/fetch";
 
-async function page({ params }) {
+type Params = {
+  category: string;
+};
+async function page({ params }: { params: Params }) {
   const data = await getData(`/product/category?name=${params.category}`);
   console.log(data);
 
