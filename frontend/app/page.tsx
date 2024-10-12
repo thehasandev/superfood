@@ -9,7 +9,7 @@ import Testomonia from "./components/Testomonia";
 import { getData } from "./utils/fetch";
 
 export default async function Home() {
-  const [CoffeData, BurgerData, PizzaData, TeaData] = await Promise.all([
+  const [CoffeData, BurgerData, PizzaData] = await Promise.all([
     getData("/product/category?name=Coffee"),
     getData("/product/category?name=Burger"),
     getData("/product/category?name=Pizza"),
@@ -23,7 +23,7 @@ export default async function Home() {
 
       {/*====================== For coffee  ====================*/}
       <Product
-        data={CoffeData.products.splice(0, 8)}
+        data={CoffeData.products}
         title="Awaken Your Senses: The Art of Coffee"
         intro="Indulge in the rich aroma and bold flavors of freshly brewed coffee. Whether you crave a smooth latte or a robust espresso, our selection has something for every coffee lover."
       />
@@ -31,7 +31,7 @@ export default async function Home() {
       {/*====================== For coffee  =====================*/}
       {/*====================== For burger  =====================*/}
       <Product
-        data={BurgerData.products}
+        data={BurgerData?.products}
         title="The Craft of Gourmet Burgers"
         intro="Dive into a world of mouthwatering perfection with our expertly crafted burgers. From juicy beef patties to creative toppings, each bite offers a savory experience that satisfies every burger lover's craving."
       />
@@ -41,7 +41,7 @@ export default async function Home() {
       {/*====================== For pizza  =====================*/}
       <div>
         <Product
-          data={PizzaData.products}
+          data={PizzaData?.products}
           title="The Craft of Gourmet Pizzas"
           intro="Savor the irresistible flavors and delightful textures of our gourmet pizzas. Whether you crave a classic Margherita or a bold BBQ chicken, our selection takes you on a delicious journey through the world of artisan pizza-making."
         />
@@ -50,11 +50,11 @@ export default async function Home() {
 
       {/*====================== For tea  =====================*/}
       <div>
-        <Product
+        {/* <Product
           data={TeaData.products}
           title="The Elegance of Exquisite Tea"
           intro="Immerse yourself in the soothing world of fine teas. From fragrant blends to delicate flavors, each sip provides a calming experience that delights every tea enthusiast's palate."
-        />
+        /> */}
       </div>
       {/*====================== For tea  =====================*/}
 

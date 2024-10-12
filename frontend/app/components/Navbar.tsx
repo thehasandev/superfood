@@ -17,11 +17,23 @@ const list = [
   { name: "Shop", link: "/shop" },
   {
     name: "Categories",
-    link: "kkkk",
+    link: "",
     moreList: [
       {
-        name: "banana",
-        link: "banana",
+        name: "Noodles",
+        link: "/Noodles",
+      },
+      {
+        name: "Tea",
+        link: "/Tea",
+      },
+      {
+        name: "Burger",
+        link: "/Burger",
+      },
+      {
+        name: "Pizza",
+        link: "/Pizza",
       },
     ],
   },
@@ -116,8 +128,10 @@ export default function Navbar({ data }: any) {
                     }`}
                   >
                     {item.moreList &&
-                      item.moreList.map((subList: any) => (
-                        <li key={subList.name}>{subList.name}</li>
+                      item.moreList.map((subList: any, inx: number) => (
+                        <Link key={inx} href={subList.link}>
+                          <li>{subList.name}</li>
+                        </Link>
                       ))}
                   </ul>
                 </li>

@@ -3,8 +3,8 @@ const Category = require("../model/categorySchema");
 
 const getProductByCategoryController = async (req, res) => {
   try {
-    const category = await Category.findOne({ _id: req.query.id });
-    console.log(category);
+    const category = await Category.findOne({ name: req.query.name });
+ 
 
     if (!category) {
       return res.status(404).json({ message: "Category not found" });
