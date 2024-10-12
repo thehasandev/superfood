@@ -14,6 +14,7 @@ export default function Product({ data, title, intro }: ProductProps) {
         <h2 className="text-4xl mb-2 text-primary font-bold text-center">
           {title}
         </h2>
+
         <h2 className="md:text-xl mb-8 text-primary text-center md:w-7/12 mx-auto">
           {intro}
         </h2>

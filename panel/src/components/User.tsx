@@ -28,7 +28,7 @@ export default function User() {
             <Avatar
               {...({} as any)}
               variant="circular"
-              alt="tania andrew"
+              alt="alt"
               className="cursor-pointer"
               src={
                 getImgUrl(user?.data?.user?.image) ||
@@ -53,7 +53,11 @@ export default function User() {
                 />
               </svg>
 
-              <Typography variant="small" className="font-medium">
+              <Typography
+                {...({} as any)}
+                variant="small"
+                className="font-medium"
+              >
                 My Profile
               </Typography>
             </MenuItem>
@@ -73,7 +77,7 @@ export default function User() {
                 />
               </svg>
 
-              <Typography variant="small" className="font-medium">
+              <Typography {...({} as any)} variant="small" className="font-medium">
                 Edit Profile
               </Typography>
             </MenuItem>
@@ -93,7 +97,7 @@ export default function User() {
                 />
               </svg>
 
-              <Typography variant="small" className="font-medium">
+              <Typography {...({} as any)} variant="small" className="font-medium">
                 Inbox
               </Typography>
             </MenuItem>
@@ -112,7 +116,7 @@ export default function User() {
                   fill="#90A4AE"
                 />
               </svg>
-              <Typography variant="small" className="font-medium">
+              <Typography {...({} as any)} variant="small" className="font-medium">
                 Help
               </Typography>
             </MenuItem>

@@ -10,6 +10,9 @@ const path = require("path");
 app.use(cors());
 app.use(express.json());
 app.use("/api/v1", Rutes);
+app.get("/",((req,res)=>{
+  res.send("Hello")
+}))
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Database

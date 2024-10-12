@@ -207,7 +207,12 @@ export default function Navbar({ data }: any) {
               </li>
 
               <li className="lg:w-16 w-8 mr-1 ">
-                <img src="/images/p1.png" alt="p1" />
+                <Image
+                  height={100}
+                  width={100}
+                  src="/images/p1.png"
+                  alt="dark logo"
+                />
               </li>
 
               <li className="lg:w-[180px] px-4  font-dm font-medium text-xs text-center text-white">

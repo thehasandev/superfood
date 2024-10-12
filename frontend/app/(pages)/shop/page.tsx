@@ -1,42 +1,41 @@
-"use client"; // Make sure this is marked as a client component
-import { useEffect, useState } from "react"; // Import useState and useEffect
+"use client";
+import { useEffect, useState } from "react";
 import Cart from "../../components/Cart";
 import BreadCrumb from "../../components/Breadcrumb";
 import Container from "../../components/Container";
 import { FaSearch } from "react-icons/fa";
 import FilterForm from "@/app/components/FilterForm";
-import NextPagination from "@/app/components/NextPagination";
 import { getData } from "@/app/utils/fetch";
+import Products from "@/app/components/Products";
 
 export default function Shop() {
-  const [products, setProducts] = useState([]); // Stores all products
-  const [filterProduct, setFilterProduct] = useState([]); // Stores filtered products
-  const [filterChange, setFilterChange] = useState(""); // Stores filter value
+  const [products, setProducts] = useState([]);
+  const [filterProduct, setFilterProduct] = useState([]);
+  const [filterChange, setFilterChange] = useState("");
 
   // Fetch products once on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const fetchedProducts = await getData("/product/allproduct");
-        setProducts(fetchedProducts); // Set all products
-        setFilterProduct(fetchedProducts); // Set default filtered products to all products
+        setProducts(fetchedProducts);
+        setFilterProduct(fetchedProducts);
       } catch (err) {
         console.error("Error fetching products", err);
       }
     };
 
     fetchProducts();
-  }, []); // Run only once on mount
+  }, []);
 
-  // Apply filter when `filterChange` or `products` changes
   useEffect(() => {
     if (filterChange) {
       const filtered = products.filter(
         (product: any) => product.price < filterChange
       );
-      setFilterProduct(filtered); // Set filtered products
+      setFilterProduct(filtered);
     } else {
-      setFilterProduct(products); // Reset to all products when no filter is applied
+      setFilterProduct(products);
     }
   }, [filterChange, products]);
 
@@ -50,7 +49,8 @@ export default function Shop() {
             <div className="col-span-4 xl:col-span-3">
               <div className="flex justify-between items-center">
                 <p className="text-lg text-gray-400">
-                  Showing 1–12 of {filterProduct.length} results {/* Show filtered product count */}
+                  Showing 1–12 of {filterProduct.length} results{" "}
+                  {/* Show filtered product count */}
                 </p>
                 <div>
                   <FilterForm onChange={setFilterChange} /> {/* Filter form */}
@@ -59,7 +59,7 @@ export default function Shop() {
 
               {/* Show filtered products or empty message */}
               {filterProduct.length > 0 ? (
-                <NextPagination data={filterProduct} />
+                <Products data={filterProduct} />
               ) : (
                 <p className="text-center text-gray-500 mt-10">
                   No products found matching your filter.

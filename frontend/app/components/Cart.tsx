@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { getImgUrl } from "../utils/getImgUrl";
+import Image from "next/image";
 
 interface CartProps {
   data: {
+    _id: string;
     image: string;
     name: string;
     price: number;
+    category: { name: string };
   };
   className?: string;
   type?: "horizontal" | "vertical";
@@ -28,22 +31,25 @@ export default function Cart({
       } ${className}`}
     >
       <div className="relative overflow-hidden group">
-        <img
-          className="h-[200px] w-full object-cover aspect-video"
+        <Image
+          height={600}
+          width={900}
           src={getImgUrl(data.image)}
-          alt="p1"
+          alt={data.name}
         />
         <div className="absolute w-full h-full bg-black bg-opacity-10 bottom-[-100%] group-hover:bottom-0 duration-500 flex items-center justify-center">
           <button className="text-base bg-sky-600 rounded-sm px-6 py-2 text-white uppercase">
-            Add To Card
+            Add To Cart
           </button>
         </div>
       </div>
 
       <div>
-        {/* Need to change api  */}
-
-        <h3 className="text-2xl text-primary my-2 capitalize">{data?.name}</h3>
+        <Link href={`/${data.category.name}/${data._id}`}>
+          <h3 className="text-2xl text-primary my-2 capitalize">
+            {data?.name}
+          </h3>
+        </Link>
 
         <p className="text-sm text-primary my-2 capitalize">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, ullam!

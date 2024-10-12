@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useDelete, useGet } from "../../components/ApiClient";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { useEffect, useState } from "react";
-import Container from "../../components/Container";
+
 
 export default function ProductList() {
   const [deleteId, setDeleteId] = useState("");
@@ -235,7 +235,7 @@ export default function ProductList() {
           </Button>
           <Typography
             {...({} as any)}
-            className="mx-4"
+            className="mx-4 text-sm"
           >{`Page ${currentPage} of ${totalPages}`}</Typography>
           <Button
             {...({} as any)}
