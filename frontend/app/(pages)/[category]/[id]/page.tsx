@@ -12,7 +12,7 @@ type Params = {
 
 export default async function Details({ params }: { params: Params }) {
   const data = await getData(`/product/single-product?id=${params.id}`);
-
+  
   // const relatedProduct = (
   //   await getData(`/product/category?id=${data.category._id}`)
   // ).products.filter((item: any) => item._id !== params.id);
