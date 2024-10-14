@@ -21,16 +21,15 @@ export default function Cart({
   className,
   type = "vertical",
 }: CartProps) {
-  
-  const handleAddToCart = (item) => {
-    console.log({
-      _id: item._id,
-      name: item.name,
-      price: item.price,
-      image: item.image,
-      quantity: 1,
-    });
-  };
+  // const handleAddToCart = (item) => {
+  //   console.log({
+  //     _id: item._id,
+  //     name: item.name,
+  //     price: item.price,
+  //     image: item.image,
+  //     quantity: 1,
+  //   });
+  // };
 
   return (
     <div
@@ -50,10 +49,7 @@ export default function Cart({
           alt={data.name}
         />
         <div className="absolute w-full h-full bg-black bg-opacity-10 bottom-[-100%] group-hover:bottom-0 duration-500 flex items-center justify-center">
-          <button
-            onClick={() => handleAddToCart(data)}
-            className="text-base bg-sky-600 rounded-sm px-6 py-2 text-white uppercase"
-          >
+          <button className="text-base bg-sky-600 rounded-sm px-6 py-2 text-white uppercase">
             Add To Cart
           </button>
         </div>
