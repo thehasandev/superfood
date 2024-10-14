@@ -13,9 +13,9 @@ type Params = {
 export default async function Details({ params }: { params: Params }) {
   const data = await getData(`/product/single-product?id=${params.id}`);
 
-  const relatedProduct = (
-    await getData(`product/category?id=${data.category._id}`)
-  ).products.filter((item: any) => item._id !== params.id);
+  // const relatedProduct = (
+  //   await getData(`/product/category?id=${data.category._id}`)
+  // ).products.filter((item: any) => item._id !== params.id);
 
   return (
     <div className="py-20">
@@ -61,11 +61,11 @@ export default async function Details({ params }: { params: Params }) {
         </div>
 
         <h3 className="text-3xl text-black/80 my-10">Related Product</h3>
-        <div className="grid grid-cols-4 gap-5">
+        {/* <div className="grid grid-cols-4 gap-5">
           {relatedProduct?.map((item: any, index: number) => (
             <Cart data={item} key={index} className="mb-5" />
           ))}
-        </div>
+        </div> */}
       </Container>
     </div>
   );

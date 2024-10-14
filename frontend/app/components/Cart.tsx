@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { getImgUrl } from "../utils/getImgUrl";
 import Image from "next/image";
+import { cropTextToWords } from "../utils/cropTextWord";
 
 interface CartProps {
   data: {
@@ -10,6 +11,7 @@ interface CartProps {
     image: string;
     name: string;
     price: number;
+    description: string;
     category: { name: string };
   };
   className?: string;
@@ -30,6 +32,7 @@ export default function Cart({
   //     quantity: 1,
   //   });
   // };
+
 
   return (
     <div
@@ -57,13 +60,23 @@ export default function Cart({
 
       <div>
         <Link href={`/${data.category.name}/${data._id}`}>
-          <h3 className="text-2xl text-primary my-2 capitalize">
+          <h3
+            className={`${
+              type === "horizontal"
+                ? "text-sm font-medium my-1"
+                : "text-2xl my-2"
+            } text-primary  capitalize`}
+          >
             {data?.name}
           </h3>
         </Link>
 
-        <p className="text-sm text-primary my-2 capitalize">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, ullam!
+        <p
+          className={`${
+            type === "horizontal" ? "my-1 text-xs" : "text-sm my-2"
+          }  text-primary  capitalize`}
+        >
+          {cropTextToWords(data.description, type === "horizontal" ? 5 : 10)}
         </p>
 
         <div className="flex gap-2 text-orange-500 justify-center">

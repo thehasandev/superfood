@@ -1,72 +1,24 @@
-"use client";
-import { useEffect, useState } from "react";
 import Cart from "../../components/Cart";
-
 import Container from "../../components/Container";
 import { FaSearch } from "react-icons/fa";
-import FilterForm from "@/app/components/FilterForm";
 import { getData } from "@/app/utils/fetch";
-import Products from "@/app/components/Products";
+import FilterProduct from "@/app/components/FilterProduct";
 
-export default function Shop() {
-  const [products, setProducts] = useState([]);
-  const [filterProduct, setFilterProduct] = useState([]);
-  const [filterChange, setFilterChange] = useState("");
-
-  // Fetch products once on component mount
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const fetchedProducts = await getData("/product/allproduct");
-        setProducts(fetchedProducts);
-        setFilterProduct(fetchedProducts);
-      } catch (err) {
-        console.error("Error fetching products", err);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
-    if (filterChange) {
-      const filtered = products.filter(
-        (product: any) => product.price < filterChange
-      );
-      setFilterProduct(filtered);
-    } else {
-      setFilterProduct(products);
-    }
-  }, [filterChange, products]);
+export default async function Shop() {
+  // Fetching all products
+  const data = await getData("/product/allproduct");
 
   return (
     <section className="py-20 px-3 xl:px-0">
       <Container>
-      <h1 className="text-xl font-bold uppercase text-[#444444] my-4">
-       Shop
-      </h1>
+        <h1 className="text-xl font-bold uppercase text-[#444444] my-4">
+          Shop
+        </h1>
 
         <section>
           <div className="grid grid-cols-4 gap-8 justify-center">
             <div className="col-span-4 xl:col-span-3">
-              <div className="flex justify-between items-center">
-                <p className="text-lg text-gray-400">
-                  Showing 1–12 of {filterProduct.length} results{" "}
-                  {/* Show filtered product count */}
-                </p>
-                <div>
-                  <FilterForm onChange={setFilterChange} /> {/* Filter form */}
-                </div>
-              </div>
-
-              {/* Show filtered products or empty message */}
-              {filterProduct.length > 0 ? (
-                <Products data={filterProduct} />
-              ) : (
-                <p className="text-center text-gray-500 mt-10">
-                  No products found matching your filter.
-                </p>
-              )}
+              <FilterProduct />
             </div>
 
             {/*=============== Search Product  ================*/}
@@ -98,17 +50,9 @@ export default function Shop() {
               {/*================ Rated Products =================*/}
               <div>
                 <p className="text-xl my-5">Top Rated Products</p>
-                {products?.map(
-                  (item: any, index: number) =>
-                    index > 2 && (
-                      <Cart
-                        type="horizontal"
-                        data={item}
-                        key={index}
-                        className="mb-5"
-                      />
-                    )
-                )}
+                {data.map((item:any) => (
+                  <Cart type="horizontal" key={item._id} data={item} />
+                ))}
               </div>
             </div>
           </div>

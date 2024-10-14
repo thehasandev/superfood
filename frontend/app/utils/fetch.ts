@@ -1,4 +1,4 @@
-const base_url = `http://localhost:8000/api/v1`;
+const base_url = `https://backend-bay-kappa-25.vercel.app/api/v1`;
 
 export async function getData(url: string) {
   try {

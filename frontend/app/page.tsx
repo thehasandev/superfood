@@ -23,7 +23,7 @@ export default async function Home() {
 
       {/*====================== For coffee  ====================*/}
       <Product
-        data={CoffeData.products}
+        data={CoffeData?.products}
         title="Awaken Your Senses: The Art of Coffee"
         intro="Indulge in the rich aroma and bold flavors of freshly brewed coffee. Whether you crave a smooth latte or a robust espresso, our selection has something for every coffee lover."
       />

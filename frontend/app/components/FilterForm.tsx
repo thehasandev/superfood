@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function FilterForm({ onChange }: any) {
+export default function FilterForm() {
   const [change, setChange] = useState(500);
 
   const handleInputChange = (e: any) => {
@@ -10,7 +10,6 @@ export default function FilterForm({ onChange }: any) {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    onChange(change);
   };
 
   return (
