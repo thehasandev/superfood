@@ -7,7 +7,7 @@ import { IoMenu } from "react-icons/io5";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useBradCrumb } from "../breadcumpContext/breadcumpContext";
+
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 
@@ -63,18 +63,12 @@ export default function Navbar({ data }: any) {
     };
   }, []);
 
-  const { setActive }: any = useBradCrumb();
-
-  const handleBradcrumb = (item: any) => {
-    setActive(item.name);
-  };
-
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
   return (
     <div
       className={`w-full z-10 transition-all duration-300 fixed top-0 px-3 xl-px-0 ${
-        isSticky ? "bg-white shadow-lg" : pathname === "/" ? "" : "bg-green-400"
+        isSticky ? "bg-white shadow-lg" : pathname === "/" ? "" : "bg-[#241E25]"
       } `}
     >
       <Container>
@@ -113,7 +107,6 @@ export default function Navbar({ data }: any) {
               {list.map((item: any, index: number) => (
                 <li
                   key={index}
-                  onClick={() => handleBradcrumb(item)}
                   className={`relative group after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
                     isSticky
                       ? "after:bg-[#111111] hover:text-[#111111]"
@@ -123,14 +116,18 @@ export default function Navbar({ data }: any) {
                   <Link href={item.link}>{item.name}</Link>
 
                   <ul
-                    className={`flex flex-col gap-4 py-5 -left-4 justify-center absolute top-5  scale-y-0 origin-top duration-500  z-[99999] w-32 pl-4 bg-white text-black/80 font-semibold text-base capitalize ${
+                    className={`w-32 -left-4  absolute top-5  scale-y-0 origin-top duration-500  z-[99999]  bg-white text-black/80 font-semibold text-base capitalize flex flex-col justify-end items-center gap-4 py-4 ${
                       item.moreList && "group-hover:scale-y-100"
                     }`}
                   >
                     {item.moreList &&
                       item.moreList.map((subList: any, inx: number) => (
                         <Link key={inx} href={subList.link}>
-                          <li>{subList.name}</li>
+                          <li
+                            className={`relative group after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer after:bg-black`}
+                          >
+                            {subList.name}
+                          </li>
                         </Link>
                       ))}
                   </ul>
@@ -147,7 +144,6 @@ export default function Navbar({ data }: any) {
             >
               {list.map((item: any, index: number) => (
                 <li
-                  onClick={() => handleBradcrumb(item)}
                   key={index}
                   className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
                     isSticky
@@ -167,7 +163,10 @@ export default function Navbar({ data }: any) {
               }`}
             >
               <span className="hidden md:block">|</span>
-              <FaShoppingCart onClick={() => setIsOpenSidebar(true)} />
+              <FaShoppingCart
+                className="cursor-pointer"
+                onClick={() => setIsOpenSidebar(true)}
+              />
               <FaSearch />
               <IoMenu
                 size={22}
@@ -253,15 +252,25 @@ export default function Navbar({ data }: any) {
 
             <div className="flex justify-center mt-5 lg:gap-x-5 gap-x-2">
               <div className="lg:w-6/12">
-                <button className="lg:px-14 px-4 py-2 lg:w-full rounded-[5px] duration-500  text-sm font-bold font-dm  border border-primary hover:bg-white hover:text-primary text-white bg-primary">
-                  CHECK OUT NOW
-                </button>
+                <Link href={"/checkout"}>
+                  <button
+                    onClick={() => setIsOpenSidebar(false)}
+                    className="lg:px-14 px-4 py-2 lg:w-full rounded-[5px] duration-500  text-sm font-bold font-dm  border border-primary hover:bg-white hover:text-primary text-white bg-primary"
+                  >
+                    CHECK OUT NOW
+                  </button>
+                </Link>
               </div>
 
               <div className="lg:w-5/12">
-                <button className="lg:px-14 px-4 py-2 lg:w-full rounded-[5px] duration-500  text-sm font-bold font-dm  border border-primary hover:bg-white hover:text-primary text-white bg-primary">
-                  VIEW CART
-                </button>
+                <Link href={"/cart"}>
+                  <button
+                    onClick={() => setIsOpenSidebar(false)}
+                    className="lg:px-14 px-4 py-2 lg:w-full rounded-[5px] duration-500  text-sm font-bold font-dm  border border-primary hover:bg-white hover:text-primary text-white bg-primary"
+                  >
+                    VIEW CART
+                  </button>
+                </Link>
               </div>
             </div>
           </>

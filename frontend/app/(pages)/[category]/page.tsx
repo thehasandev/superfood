@@ -1,4 +1,3 @@
-import BreadCrumb from "@/app/components/Breadcrumb";
 import Cart from "@/app/components/Cart";
 import Container from "@/app/components/Container";
 import { getData } from "@/app/utils/fetch";
@@ -13,7 +12,9 @@ async function page({ params }: { params: Params }) {
   return (
     <section className="mt-24 px-3 xl:px-0">
       <Container>
-        <BreadCrumb currentPage={params.category} />
+        <h1 className="text-xl font-bold uppercase text-[#444444] my-4">
+          {params.category}
+        </h1>
         <div className="grid grid-cols-12 gap-5">
           {data?.products.map((item: any, index: number) => (
             <Cart

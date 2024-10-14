@@ -1,12 +1,12 @@
-import BreadCrumb from "../../components/Breadcrumb";
+
 import Container from "../../components/Container";
 
 export default function Contact() {
   return (
     <section className="py-20 px-4 lg:px-0">
       <Container>
-        <BreadCrumb currentPage="Contact" />
-        <h2 className="text-5xl font-bold text-black/70 mb-10">
+      
+        <h2 className="text-5xl font-bold text-black/70 my-10">
           Fill up a Form
         </h2>
 

@@ -3,8 +3,6 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Signika } from "next/font/google";
-import { BreadcrumbProvider } from "./breadcumpContext/breadcumpContext";
-import { getData } from "./utils/fetch";
 
 const signika = Signika({ subsets: ["latin"] });
 
@@ -23,11 +21,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${signika.className}`}>
-        <BreadcrumbProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </BreadcrumbProvider>
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

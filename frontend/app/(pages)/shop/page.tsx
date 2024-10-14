@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Cart from "../../components/Cart";
-import BreadCrumb from "../../components/Breadcrumb";
+
 import Container from "../../components/Container";
 import { FaSearch } from "react-icons/fa";
 import FilterForm from "@/app/components/FilterForm";
@@ -42,7 +42,9 @@ export default function Shop() {
   return (
     <section className="py-20 px-3 xl:px-0">
       <Container>
-        <BreadCrumb currentPage="Shop" />
+      <h1 className="text-xl font-bold uppercase text-[#444444] my-4">
+       Shop
+      </h1>
 
         <section>
           <div className="grid grid-cols-4 gap-8 justify-center">

@@ -1,11 +1,14 @@
 import Container from "@/app/components/Container";
+import Image from "next/image";
+import Link from "next/link";
 import { AiOutlineCloseSquare, AiOutlineRight } from "react-icons/ai";
 
 export default function page() {
   return (
-    <section className="my-24">
+    <section className="my-24 px-3 xl:px-0">
       <Container>
-        <h2 className="text-3xl font-semibold mb-4">Cart</h2>
+        <h1 className="text-xl font-bold uppercase text-[#444444]">Cart</h1>
+
         <ul className="bg-ash flex justify-between p-4">
           <li className="font-dm font-bold text-base text-primary">Action</li>
           <li className="font-dm font-bold text-base text-primary">Product</li>
@@ -24,7 +27,7 @@ export default function page() {
             <AiOutlineCloseSquare size={30} className="text-primary " />
           </li>
           <li className="  font-dm font-bold text-base text-primary">
-            {/* <img src={imgUrl} alt="img1" className="w-16" /> */}
+            <Image src={"/images/g1.jpg"} alt="img1" width={100} height={100} />
           </li>
           <li className="w-[550px] text-center  font-dm font-bold text-base text-primary">
             Hasan
@@ -63,10 +66,10 @@ export default function page() {
             <table>
               <thead>
                 <tr>
-                  <th className="border border-gray/50  font-dm font-bold text-base text-primary py-4 px-32">
+                  <th className="border border-gray/50  font-dm font-bold text-base text-primary py-4 px-5 xl:px-32">
                     Subtotal
                   </th>
-                  <th className="border border-gray/50 font-dm font-normal text-base text-gray py-4 px-32">
+                  <th className="border border-gray/50 font-dm font-normal text-base text-gray py-4 px-5 xl:px-32">
                     5000
                   </th>
                 </tr>
@@ -74,10 +77,10 @@ export default function page() {
 
               <tbody>
                 <tr>
-                  <td className="border border-gray/50 font-dm font-bold text-base text-primary py-4 px-32">
+                  <td className="border border-gray/50 font-dm font-bold text-base text-primary py-4 px-5 xl:px-32">
                     Total
                   </td>
-                  <td className="border border-gray/50 font-dm font-bold text-base text-primary py-4 px-32">
+                  <td className="border border-gray/50 font-dm font-bold text-base text-primary py-4 px-5 xl:px-32">
                     5000
                   </td>
                 </tr>
@@ -86,7 +89,11 @@ export default function page() {
           </div>
 
           <div className="flex justify-end mt-5">
-            <button>Proceed to Checkout</button>
+            <Link href={"/checkout"}>
+              <button className="bg-black/70 px-8 py-2 rounded-sm text-white">
+                Proceed to Checkout
+              </button>
+            </Link>
           </div>
         </section>
       </Container>

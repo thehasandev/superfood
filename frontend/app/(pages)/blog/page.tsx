@@ -1,16 +1,14 @@
 import Container from "../../components/Container";
-import BreadCrumb from "../../components/Breadcrumb";
 import SingleBlog from "@/app/components/SingleBlog";
 import Blogs from "../../data/blog";
-
-
 
 export default function Blog() {
   return (
     <div className="py-20 px-3 xl:px-0">
       <Container>
-        <BreadCrumb currentPage="Blog" />
-
+        <h1 className="text-xl font-bold uppercase text-[#444444] my-4">
+          Blog
+        </h1>
         {Blogs.map((blog, index) => (
           <SingleBlog
             key={index}
