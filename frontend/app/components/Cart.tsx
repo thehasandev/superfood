@@ -44,12 +44,7 @@ export default function Cart({
       } ${className}`}
     >
       <div className="relative overflow-hidden group">
-        <Image
-          height={600}
-          width={900}
-          src={getImgUrl(data.image)}
-          alt={data.name}
-        />
+        <img className="w-full" src={getImgUrl(data.image)} alt={data.name} />
         <div className="absolute w-full h-full bg-black bg-opacity-10 bottom-[-100%] group-hover:bottom-0 duration-500 flex items-center justify-center">
           <button className="text-base bg-sky-600 rounded-sm px-6 py-2 text-white uppercase">
             Add To Cart
