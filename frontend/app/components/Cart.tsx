@@ -33,7 +33,6 @@ export default function Cart({
   //   });
   // };
 
-
   return (
     <div
       className={`${
@@ -45,9 +44,8 @@ export default function Cart({
       } ${className}`}
     >
       <div className="relative overflow-hidden group">
-        <Image
-          height={600}
-          width={900}
+        <img
+          className="w-full h-[220px] bg-cover aspect-video"
           src={getImgUrl(data.image)}
           alt={data.name}
         />
