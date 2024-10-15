@@ -16,13 +16,19 @@ async function page({ params }: { params: Params }) {
           {params.category}
         </h1>
         <div className="grid grid-cols-12 gap-5">
-          {data?.products.map((item: any, index: number) => (
-            <Cart
-              className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3"
-              data={item}
-              key={index}
-            />
-          ))}
+          {data?.products?.length > 0 ? (
+            data.products.map((item: any, index: number) => (
+              <Cart
+                className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3"
+                data={item}
+                key={index}
+              />
+            ))
+          ) : (
+            <p className="w-96 font-bold text-xl text-black/60 my-20">
+              No products available
+            </p>
+          )}
         </div>
       </Container>
     </section>

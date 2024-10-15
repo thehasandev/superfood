@@ -5,8 +5,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import Image from "next/image";
+import { getImgUrl } from "../utils/getImgUrl";
+import Link from "next/link";
 
-export default function Gallery() {
+export default function Gallery({ data }: any) {
   return (
     <section className="bg-black">
       <Swiper
@@ -32,69 +34,17 @@ export default function Gallery() {
         }}
         modules={[Autoplay]}
       >
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g2.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g3.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g4.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g5.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g2.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g3.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g4.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g5.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g2.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g3.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g4.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g5.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image width={250} height={250} src="/images/g6.jpg" alt="g1" />
-        </SwiperSlide>
+        {data.map((item: any) => (
+          <SwiperSlide key={item._id}>
+            <Link href={`/${item.category.name}/${item._id}`}>
+              <img
+                className="w-full h-[180px] object-cover aspect-video"
+                src={getImgUrl(item.image)}
+                alt={item.name}
+              />
+            </Link>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </section>
   );

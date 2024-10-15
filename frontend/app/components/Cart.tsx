@@ -45,7 +45,11 @@ export default function Cart({
     >
       <div className="relative overflow-hidden group">
         <img
-          className="w-full h-[220px] bg-cover aspect-video"
+          className={`${
+            type === "horizontal"
+              ? "w-full"
+              : "h-[220px] w-full  bg-cover aspect-video"
+          }`}
           src={getImgUrl(data.image)}
           alt={data.name}
         />
@@ -74,16 +78,18 @@ export default function Cart({
             type === "horizontal" ? "my-1 text-xs" : "text-sm my-2"
           }  text-primary  capitalize`}
         >
-          {cropTextToWords(data.description, type === "horizontal" ? 5 : 10)}
+          {cropTextToWords(data.description, type === "horizontal" ? 3 : 10)}
         </p>
 
-        <div className="flex gap-2 text-orange-500 justify-center">
-          <FaStarHalfStroke />
-          <FaStarHalfStroke />
-          <FaStarHalfStroke />
-          <FaStarHalfStroke />
-          <FaStarHalfStroke />
-        </div>
+        {type === "vertical" && (
+          <div className="flex gap-2 text-orange-500 justify-center">
+            <FaStarHalfStroke />
+            <FaStarHalfStroke />
+            <FaStarHalfStroke />
+            <FaStarHalfStroke />
+            <FaStarHalfStroke />
+          </div>
+        )}
         <h3 className="text-base text-primary mt-2">৳ {data?.price}.00</h3>
       </div>
     </div>

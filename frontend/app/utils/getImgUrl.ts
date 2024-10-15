@@ -4,4 +4,3 @@ export const getImgUrl = (url: string) => {
   };
 
 
-  // https://backend-bay-kappa-25.vercel.app/uploads/1728283838617-a%20(3).png

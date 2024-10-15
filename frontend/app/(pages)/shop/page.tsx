@@ -3,10 +3,11 @@ import Container from "../../components/Container";
 import { FaSearch } from "react-icons/fa";
 import { getData } from "@/app/utils/fetch";
 import FilterProduct from "@/app/components/FilterProduct";
+import Link from "next/link";
 
 export default async function Shop() {
-  // Fetching all products
-  const data = await getData("/product/allproduct");
+  const data = await getData(`/product/allproduct`);
+  const categories = await getData(`/product/categories`);
 
   return (
     <section className="py-20 px-3 xl:px-0">
@@ -37,22 +38,22 @@ export default async function Shop() {
               <div>
                 <p className="text-xl my-5">Categories</p>
                 <ul className="text-base text-black/50 flex flex-col gap-2">
-                  <li>Fruit Bowl</li>
-                  <li>Ice Cream</li>
-                  <li>Shake</li>
-                  <li>Smoothie</li>
-                  <li>Spa</li>
-                  <li>Tea</li>
-                  <li>Uncategorized</li>
+                  {categories.map((item: any) => (
+                    <Link key={item._id} href={item.name}>
+                      <li>{item.name}</li>
+                    </Link>
+                  ))}
                 </ul>
               </div>
 
               {/*================ Rated Products =================*/}
               <div>
                 <p className="text-xl my-5">Top Rated Products</p>
-                {data.map((item:any) => (
-                  <Cart type="horizontal" key={item._id} data={item} />
-                ))}
+                <div className="flex flex-col gap-10">
+                  {data.map((item: any) => (
+                    <Cart type="horizontal" key={item._id} data={item} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
