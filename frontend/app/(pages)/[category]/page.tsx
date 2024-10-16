@@ -7,7 +7,7 @@ type Params = {
 };
 async function page({ params }: { params: Params }) {
   const data = await getData(`/product/category?name=${params.category}`);
-  console.log(data);
+ 
 
   return (
     <section className="mt-24 px-3 xl:px-0">

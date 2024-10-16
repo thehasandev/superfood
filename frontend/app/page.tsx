@@ -17,8 +17,6 @@ export default async function Home() {
     getData("/product/category?name=Tea"),
   ]);
 
-  console.log(alldata);
-
   return (
     <>
       <Banner />

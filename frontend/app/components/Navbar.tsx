@@ -64,6 +64,15 @@ export default function Navbar({ data }: any) {
   }, []);
 
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+
+  const handleCategoryOpen = (data: any) => {
+    if (data.name === "Categories") {
+      setCategoryOpen(!categoryOpen);
+    } else {
+      setOpen(false);
+    }
+  };
 
   return (
     <div
@@ -144,6 +153,7 @@ export default function Navbar({ data }: any) {
             >
               {list.map((item: any, index: number) => (
                 <li
+                  onClick={() => handleCategoryOpen(item)}
                   key={index}
                   className={`relative after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer ${
                     isSticky
@@ -152,6 +162,23 @@ export default function Navbar({ data }: any) {
                   }`}
                 >
                   <Link href={item.link}>{item.name}</Link>
+                  {categoryOpen && (
+                    <ul
+                      className={`bg-white text-black/80 font-semibold text-base capitalize flex flex-col  items-center gap-5 `}
+                    >
+                      {item.moreList &&
+                        item.moreList.map((subList: any, inx: number) => (
+                          <Link key={inx} href={subList.link}>
+                            <li
+                              onClick={() => setOpen(false)}
+                              className={`relative group after:absolute after:content-[''] after:bottom-[-2px] after:rounded-sm after:left-0 after:h-1 after:w-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer after:bg-black`}
+                            >
+                              {subList.name}
+                            </li>
+                          </Link>
+                        ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
