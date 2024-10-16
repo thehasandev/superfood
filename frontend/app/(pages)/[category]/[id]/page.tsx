@@ -25,7 +25,7 @@ export default async function Details({ params }: { params: Params }) {
           Shop
         </h1>
         <div className="grid grid-cols-5 justify-between gap-5">
-          <div className="col-span-2">
+          <div className="col-span-5 sm:col-span-3 md:col-span-2">
             <div className="mb-5">
               <img
                 className="w-full"
@@ -34,7 +34,7 @@ export default async function Details({ params }: { params: Params }) {
               />
             </div>
           </div>
-          <div className="col-span-3">
+          <div className="col-span-5 sm:col-span-2 md:col-span-3">
             <h2 className="text-3xl font-bold text-[#444444]">{data?.name}</h2>
             <h2 className="text-3xl font-bold text-[#444444] my-2">
               ৳ {data?.price}.00
