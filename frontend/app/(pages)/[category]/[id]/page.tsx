@@ -14,13 +14,12 @@ type Params = {
 export default async function Details({ params }: { params: Params }) {
   const data = await getData(`/product/single-product?id=${params.id}`);
 
-
   const relatedProduct = (
     await getData(`/product/category?name=${params.category}`)
   ).products.filter((item: any) => item._id !== params.id);
 
   return (
-    <div className="py-20">
+    <div className="py-20 px-3 xl:px-0">
       <Container>
         <h1 className="text-2xl font-bold uppercase text-[#444444] my-6">
           Shop
@@ -28,11 +27,10 @@ export default async function Details({ params }: { params: Params }) {
         <div className="grid grid-cols-5 justify-between gap-5">
           <div className="col-span-2">
             <div className="mb-5">
-              <Image
-                height={200}
-                width={500}
+              <img
+                className="w-full"
                 src={getImgUrl(data.image)}
-                alt="p1"
+                alt={data.name}
               />
             </div>
           </div>
@@ -63,9 +61,13 @@ export default async function Details({ params }: { params: Params }) {
         </div>
 
         <h3 className="text-3xl text-black/80 my-10">Related Product</h3>
-        <div className="grid grid-cols-4 gap-5">
+        <div className="grid grid-cols-12 gap-5">
           {relatedProduct?.map((item: any, index: number) => (
-            <Cart data={item} key={index} className="mb-5" />
+            <Cart
+              data={item}
+              key={index}
+              className="mb-5 col-span-12 min-[460px]:col-span-6 md:col-span-3"
+            />
           ))}
         </div>
       </Container>
