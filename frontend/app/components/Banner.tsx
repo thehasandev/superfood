@@ -8,7 +8,7 @@ export default function Banner() {
     <section>
       <>
         {/*============= Banner ========= */}
-        <div className="relative bg-banner  w-full bg-no-repeat bg-center bg-cover">
+        <div className="relative bg-banner  w-full bg-no-repeat md:bg-center bg-cover">
           <div className=" bg-black/20 w-full">
             <Container>
               <div className="flex items-center  md:w-5/12 px-3 xl-px-0 py-[280px]">
