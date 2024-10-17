@@ -10,6 +10,8 @@ import Link from "next/link";
 
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
+import { useCart } from "../context/cartContext";
+import { getImgUrl } from "../utils/getImgUrl";
 
 const list = [
   { name: "Home", link: "/" },
@@ -73,6 +75,12 @@ export default function Navbar({ data }: any) {
       setOpen(false);
     }
   };
+
+  const { cartItems, incrementItem, decrementItem, deleteItem } = useCart();
+
+  const totalAmount = cartItems.reduce((acc, item) => {
+    return acc + item.price * (item.quantity || 0);
+  }, 0);
 
   return (
     <div
@@ -190,10 +198,15 @@ export default function Navbar({ data }: any) {
               }`}
             >
               <span className="hidden md:block">|</span>
-              <FaShoppingCart
-                className="cursor-pointer"
-                onClick={() => setIsOpenSidebar(true)}
-              />
+              <div className="relative">
+                <FaShoppingCart
+                  className="cursor-pointer"
+                  onClick={() => setIsOpenSidebar(true)}
+                />
+                <p className="absolute -top-3 -right-2 text-xs font-semibold">
+                  {cartItems.length > 0 && cartItems.length}
+                </p>
+              </div>
               <FaSearch />
               <IoMenu
                 size={22}
@@ -217,7 +230,7 @@ export default function Navbar({ data }: any) {
             size={40}
           />
         </div>
-        <h2>SHOPPING CART</h2>
+        <h2 className="p-2">SHOPPING CART</h2>
         <div>
           <ul className="flex justify-between mt-5 px-2 ">
             <li className="font-dm font-normal  lg:font-bold text-sm lg:text-base text-primary">
@@ -241,40 +254,63 @@ export default function Navbar({ data }: any) {
           </ul>
 
           <>
-            <ul className="flex justify-between items-center  mt-5 bg-[#454449] py-2">
-              <li className="lg:w-32 w-16 pl-5 cursor-pointer">
-                <AiOutlineCloseSquare className="text-white lg:text-xl text-sm" />
-              </li>
+            <ul
+              style={{ scrollbarWidth: "none" }}
+              className="overflow-y-scroll h-[420px]"
+            >
+              {cartItems.map((item: any) => (
+                <div
+                  className="flex justify-between items-center  mt-5 bg-[#454449] py-2"
+                  key={item._id}
+                >
+                  <li
+                    onClick={() => deleteItem(item._id)}
+                    className="lg:w-32 w-16 pl-5 cursor-pointer"
+                  >
+                    <AiOutlineCloseSquare className="text-white lg:text-xl text-sm" />
+                  </li>
 
-              <li className="lg:w-16 w-8 mr-1 ">
-                <Image
-                  height={100}
-                  width={100}
-                  src="/images/p1.png"
-                  alt="dark logo"
-                />
-              </li>
+                  <li className="lg:w-16 w-8 mr-1 ">
+                    <Image
+                      height={100}
+                      width={100}
+                      src={getImgUrl(item.image)}
+                      alt="dark logo"
+                    />
+                  </li>
 
-              <li className="lg:w-[180px] px-4  font-dm font-medium text-xs text-center text-white">
-                Hasan
-              </li>
+                  <li className="lg:w-[180px] px-4  font-dm font-medium text-xs text-center text-white">
+                    {item.name}
+                  </li>
 
-              <li className="lg:w-[100px]  font-dm font-medium text-base  text-white">
-                500
-              </li>
+                  <li className="lg:w-[100px]  font-dm font-medium text-base  text-white">
+                    {item.price}
+                  </li>
 
-              <li className="font-dm  font-bold text-base mx-4 lg:mx-0 text-white border border-white flex justify-center gap-x-3 px-1 items-center ">
-                <button className="text-xl  text-white">-</button>
-                100
-                <button className="text-xl text-white">+</button>
-              </li>
+                  <li className="font-dm  font-bold text-base mx-4 lg:mx-0 text-white border border-white flex justify-center gap-x-3 px-1 items-center ">
+                    <button
+                      onClick={() => decrementItem(item._id)}
+                      className="text-xl  text-white"
+                    >
+                      -
+                    </button>
+                    {item.quantity}
+                    <button
+                      onClick={() => incrementItem(item._id)}
+                      className="text-xl text-white"
+                    >
+                      +
+                    </button>
+                  </li>
 
-              <li className="lg:w-32  text-right pr-5 font-dm font-medium text-base text-white">
-                100
-              </li>
+                  <li className="lg:w-32  text-right pr-5 font-dm font-medium text-base text-white">
+                    {item.price * item.quantity}
+                  </li>
+                </div>
+              ))}
             </ul>
             <p className="font-dm font-medium text-xl pr-5 mt-12 text-right text-primary">
-              Tottal : 50000
+              Tottal : {totalAmount && totalAmount}
             </p>
 
             <div className="flex justify-center mt-5 lg:gap-x-5 gap-x-2">

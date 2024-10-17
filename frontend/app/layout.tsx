@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Signika } from "next/font/google";
+import { CartProvider } from "./context/cartContext";
 
 const signika = Signika({ subsets: ["latin"] });
 
@@ -21,9 +22,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${signika.className}`}>
-        <Navbar />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );
