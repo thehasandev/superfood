@@ -12,6 +12,7 @@ import { AiOutlineCloseSquare } from "react-icons/ai";
 import { GrFormClose } from "react-icons/gr";
 import { useCart } from "../context/cartContext";
 import { getImgUrl } from "../utils/getImgUrl";
+import { useTotalAmount } from "../context/totalAmountContext";
 
 const list = [
   { name: "Home", link: "/" },
@@ -46,7 +47,7 @@ export default function Navbar({ data }: any) {
   const [isSticky, setIsSticky] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
+  const {totalAmount} = useTotalAmount()
   useEffect(() => {
     const handleScroll = () => {
       // Change '50' to the scroll position you want to trigger the sticky behavior
@@ -78,9 +79,7 @@ export default function Navbar({ data }: any) {
 
   const { cartItems, incrementItem, decrementItem, deleteItem } = useCart();
 
-  const totalAmount = cartItems.reduce((acc, item) => {
-    return acc + item.price * (item.quantity || 0);
-  }, 0);
+
 
   return (
     <div

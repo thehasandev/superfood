@@ -1,19 +1,26 @@
+"use client";
 import Container from "@/app/components/Container";
-import Image from "next/image";
+import { useCart } from "../../context/cartContext";
+
 import Link from "next/link";
 import { AiOutlineCloseSquare, AiOutlineRight } from "react-icons/ai";
+import { getImgUrl } from "@/app/utils/getImgUrl";
+import { useTotalAmount } from "@/app/context/totalAmountContext";
 
-export default function page() {
+export default function Cart() {
+  const { cartItems, incrementItem, decrementItem, deleteItem } = useCart();
+  const { totalAmount } = useTotalAmount();
+
   return (
     <section className="my-24 px-3 xl:px-0">
       <Container>
         <h1 className="text-xl font-bold uppercase text-[#444444]">Cart</h1>
 
-        <ul className="bg-ash flex justify-between p-4">
+        <ul className="bg-ash flex justify-between p-4 ">
           <li className="font-dm font-bold text-base text-primary">Action</li>
           <li className="font-dm font-bold text-base text-primary">Product</li>
           <li className="font-dm font-bold text-base text-primary">Name</li>
-          <li className="font-dm font-bold text-base pl-10 text-primary">
+          <li className="font-dm font-bold text-base md:pl-10 text-primary">
             Price
           </li>
           <li className="font-dm font-bold text-base text-primary">Quantity</li>
@@ -22,29 +29,55 @@ export default function page() {
           </li>
         </ul>
 
-        <ul className="bg-ash flex items-center  p-4 border-b border-gray">
-          <li className="w-[280px] font-dm font-bold text-base text-primary cursor-pointer">
-            <AiOutlineCloseSquare size={30} className="text-primary " />
-          </li>
-          <li className="  font-dm font-bold text-base text-primary">
-            <Image src={"/images/g1.jpg"} alt="img1" width={100} height={100} />
-          </li>
-          <li className="w-[550px] text-center  font-dm font-bold text-base text-primary">
-            Hasan
-          </li>
-          <li className="w-[200px] pl-8  font-dm font-bold text-base  text-primary">
-            5000
-          </li>
-          <li className=" flex  items-center px-1 justify-center gap-5 font-dm border border-primary border-solid ml-24 font-bold text-base text-primary">
-            <button className="text-lg text-primary">-</button>5
-            <button className="text-lg  text-primary">+</button>
-          </li>
-          <li className="w-[300px] text-right   font-dm font-bold  text-base text-primary">
-            1000
-          </li>
+        <ul>
+          {cartItems.map((item) => (
+            <div
+              className="bg-ash flex items-center p-4 border-b border-gray"
+              key={item._id}
+            >
+              <li className="w-[250px] font-dm font-bold text-base text-primary cursor-pointer">
+                <AiOutlineCloseSquare
+                  onClick={() => deleteItem(item._id)}
+                  size={30}
+                  className="text-primary"
+                />
+              </li>
+              <li className="font-dm font-bold text-base text-primary">
+                <img
+                  className="md:w-64"
+                  src={getImgUrl(item.image)}
+                  alt="dark logo"
+                />
+              </li>
+              <li className="w-[550px] text-center  font-dm font-bold text-base text-primary">
+                {item.name}
+              </li>
+              <li className="w-[200px] pl-8  font-dm font-bold text-base  text-primary">
+                {item.price}
+              </li>
+              <li className=" flex  items-center px-1 justify-center gap-5 font-dm border border-primary border-solid ml-24 font-bold text-base text-primary">
+                <button
+                  onClick={() => decrementItem(item._id)}
+                  className="text-lg text-primary"
+                >
+                  -
+                </button>
+                {item.quantity}
+                <button
+                  onClick={() => incrementItem(item._id)}
+                  className="text-lg  text-primary"
+                >
+                  +
+                </button>
+              </li>
+              <li className="w-[300px] text-right   font-dm font-bold  text-base text-primary">
+                {item.price * item.quantity}
+              </li>
+            </div>
+          ))}
         </ul>
 
-        <select className="w-32 border mt-8 border-gray/50">
+        {/* <select className="w-32 border mt-8 border-gray/50">
           <option className="font-dm font-bold text-base text-primary">
             Size
           </option>
@@ -57,7 +90,7 @@ export default function page() {
           <option className="font-dm font-bold text-base text-primary">
             31
           </option>
-        </select>
+        </select> */}
 
         <section>
           <h2 className="text-right mt-5">Cart totals</h2>
@@ -70,7 +103,7 @@ export default function page() {
                     Subtotal
                   </th>
                   <th className="border border-gray/50 font-dm font-normal text-base text-gray py-4 px-5 xl:px-32">
-                    5000
+                    {totalAmount}
                   </th>
                 </tr>
               </thead>
@@ -81,7 +114,7 @@ export default function page() {
                     Total
                   </td>
                   <td className="border border-gray/50 font-dm font-bold text-base text-primary py-4 px-5 xl:px-32">
-                    5000
+                    {totalAmount}
                   </td>
                 </tr>
               </tbody>

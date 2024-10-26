@@ -1,6 +1,9 @@
+"use client";
 import Container from "@/app/components/Container";
+import { useTotalAmount } from "@/app/context/totalAmountContext";
 
-function page() {
+export default function Checkout() {
+  const { totalAmount } = useTotalAmount();
   return (
     <div className="my-24 px-3 xl:px-0">
       <Container>
@@ -134,11 +137,8 @@ function page() {
 
           <tbody>
             <tr>
-              <td className="border-b border-b-gray font-bold text-base text-primary py-4 px-5 xl:px-32">
-                Product name x 1
-              </td>
               <td className="border-b border-b-gray font-normal text-base text-gray py-4 px-5 xl:px-32">
-                389.99 $
+                {totalAmount}
               </td>
             </tr>
 
@@ -147,7 +147,7 @@ function page() {
                 Subtotal
               </td>
               <td className="border-b border-b-gray font-normal text-base text-gray py-4 px-5 xl:px-32">
-                389.99 $
+                {totalAmount}
               </td>
             </tr>
 
@@ -156,14 +156,18 @@ function page() {
                 Total
               </td>
               <td className="border-b border-b-gray font-normal text-base text-gray py-4 px-5 xl:px-32">
-                389.99 $
+                {totalAmount}
               </td>
             </tr>
           </tbody>
         </table>
+        <button
+          onClick={() => alert(`Pay bkash  or nagot only ${totalAmount}`)}
+          className="bg-black/70 px-8 py-2 rounded-sm text-white mt-5"
+        >
+          Proceed to pay
+        </button>
       </Container>
     </div>
   );
 }
-
-export default page;

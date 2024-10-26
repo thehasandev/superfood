@@ -24,7 +24,7 @@ export default function Cart({
   className,
   type = "vertical",
 }: CartProps) {
-  const { addToCart, cartItems } = useCart();
+  const { addToCart } = useCart();
 
   const handleAddToCart = (item: any) => {
     addToCart({
