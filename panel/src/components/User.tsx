@@ -17,7 +17,11 @@ export default function User() {
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem("user");
+
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("user");
+    }
+
     navigate("/");
   };
   return (
@@ -77,7 +81,11 @@ export default function User() {
                 />
               </svg>
 
-              <Typography {...({} as any)} variant="small" className="font-medium">
+              <Typography
+                {...({} as any)}
+                variant="small"
+                className="font-medium"
+              >
                 Edit Profile
               </Typography>
             </MenuItem>
@@ -97,7 +105,11 @@ export default function User() {
                 />
               </svg>
 
-              <Typography {...({} as any)} variant="small" className="font-medium">
+              <Typography
+                {...({} as any)}
+                variant="small"
+                className="font-medium"
+              >
                 Inbox
               </Typography>
             </MenuItem>
@@ -116,7 +128,11 @@ export default function User() {
                   fill="#90A4AE"
                 />
               </svg>
-              <Typography {...({} as any)} variant="small" className="font-medium">
+              <Typography
+                {...({} as any)}
+                variant="small"
+                className="font-medium"
+              >
                 Help
               </Typography>
             </MenuItem>

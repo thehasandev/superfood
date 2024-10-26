@@ -271,12 +271,7 @@ export default function Navbar({ data }: any) {
                   </li>
 
                   <li className="lg:w-16 w-8 mr-1 ">
-                    <Image
-                      height={100}
-                      width={100}
-                      src={getImgUrl(item.image)}
-                      alt="dark logo"
-                    />
+                    <img src={getImgUrl(item.image)} alt="dark logo" />
                   </li>
 
                   <li className="lg:w-[180px] px-4  font-dm font-medium text-xs text-center text-white">
