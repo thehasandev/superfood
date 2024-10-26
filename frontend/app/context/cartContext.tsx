@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, useEffect, ReactNode } from "react";
 
 interface CartItem {
   _id: string;
@@ -21,22 +21,27 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 const saveCartToLocalStorage = (cartItems: CartItem[]) => {
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }
 };
 
 const loadCartFromLocalStorage = (): CartItem[] => {
-  const storedCart = localStorage.getItem("cartItems");
-  return storedCart ? JSON.parse(storedCart) : [];
+  if (typeof window !== "undefined") {
+    const storedCart = localStorage.getItem("cartItems");
+    return storedCart ? JSON.parse(storedCart) : [];
+  }
+  return [];
 };
 
-export const CartProvider = ({
-  children,
-}: {
-  children: ReactNode;
-}): JSX.Element => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(
-    loadCartFromLocalStorage()
-  );
+export const CartProvider = ({ children }: { children: ReactNode }): JSX.Element => {
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    // Load cart from localStorage only on client-side mount
+    const initialCartItems = loadCartFromLocalStorage();
+    setCartItems(initialCartItems);
+  }, []);
 
   const addToCart = (item: CartItem) => {
     setCartItems((prevItems) => {
@@ -58,7 +63,6 @@ export const CartProvider = ({
     });
   };
 
-  // Add to cart increment
   const incrementItem = (id: string) => {
     setCartItems((prevItems) => {
       const updatedItems = prevItems.map((cartItem) =>
@@ -71,7 +75,6 @@ export const CartProvider = ({
     });
   };
 
-  // Add to cart decrement
   const decrementItem = (id: string) => {
     setCartItems((prevItems) => {
       const updatedItems = prevItems
@@ -80,13 +83,12 @@ export const CartProvider = ({
             ? { ...cartItem, quantity: (cartItem.quantity || 0) - 1 }
             : cartItem
         )
-        .filter((cartItem) => (cartItem.quantity || 0) > 0); // Remove items with quantity 0
+        .filter((cartItem) => (cartItem.quantity || 0) > 0);
       saveCartToLocalStorage(updatedItems);
       return updatedItems;
     });
   };
 
-  // Add to cart delete
   const deleteItem = (id: string) => {
     setCartItems((prevItems) => {
       const updatedItems = prevItems.filter((cartItem) => cartItem._id !== id);
