@@ -16,7 +16,7 @@ export default function Cart() {
       <Container>
         <h1 className="text-xl font-bold uppercase text-[#444444]">Cart</h1>
 
-        <ul className="bg-ash flex justify-between p-4 ">
+        <ul className="bg-ash flex justify-between md:p-4 ">
           <li className="font-dm font-bold text-base text-primary">Action</li>
           <li className="font-dm font-bold text-base text-primary">Product</li>
           <li className="font-dm font-bold text-base text-primary">Name</li>
@@ -32,30 +32,30 @@ export default function Cart() {
         <ul>
           {cartItems.map((item) => (
             <div
-              className="bg-ash flex items-center p-4 border-b border-gray"
+              className="bg-ash flex items-center gap-2 md:p-4 border-b border-gray py-5"
               key={item._id}
             >
-              <li className="w-[250px] font-dm font-bold text-base text-primary cursor-pointer">
+              <li className="md:w-[200px] font-dm font-bold text-base text-primary cursor-pointer">
                 <AiOutlineCloseSquare
                   onClick={() => deleteItem(item._id)}
                   size={30}
                   className="text-primary"
                 />
               </li>
-              <li className="font-dm font-bold text-base text-primary">
+              <li className="md:w-[300px] font-dm font-bold text-base text-primary">
                 <img
-                  className="md:w-64"
+                  className="w-full"
                   src={getImgUrl(item.image)}
                   alt="dark logo"
                 />
               </li>
-              <li className="w-[550px] text-center  font-dm font-bold text-base text-primary">
+              <li className="md:w-[400px] text-center  font-dm font-bold text-xs md:text-base text-primary">
                 {item.name}
               </li>
-              <li className="w-[200px] pl-8  font-dm font-bold text-base  text-primary">
+              <li className="md:w-[140px] font-dm font-bold text-base text-primary">
                 {item.price}
               </li>
-              <li className=" flex  items-center px-1 justify-center gap-5 font-dm border border-primary border-solid ml-24 font-bold text-base text-primary">
+              <li className="flex items-center px-1 justify-center gap-5 font-dm border border-primary border-solid md:ml-24 font-bold text-base text-primary">
                 <button
                   onClick={() => decrementItem(item._id)}
                   className="text-lg text-primary"
@@ -70,7 +70,7 @@ export default function Cart() {
                   +
                 </button>
               </li>
-              <li className="w-[300px] text-right   font-dm font-bold  text-base text-primary">
+              <li className="md:w-[300px] text-right   font-dm font-bold  text-base text-primary">
                 {item.price * item.quantity}
               </li>
             </div>
