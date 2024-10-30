@@ -141,7 +141,7 @@ export default function ProductEdit() {
                 src={
                   previewImage.startsWith("blob:")
                     ? previewImage
-                    : `http://localhost:8000/${previewImage}`
+                    : `https://backend-bay-kappa-25.vercel.app/${previewImage}`
                 }
                 alt="Current Product"
                 className="w-96 object-cover cursor-pointer"

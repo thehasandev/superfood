@@ -6,7 +6,7 @@ import { ApiClient } from "./components/ApiClient.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <ThemeProvider>
-    <ApiClient baseUrl="http://localhost:8000/api/v1">
+    <ApiClient baseUrl="https://backend-bay-kappa-25.vercel.app/">
       <App />
     </ApiClient>
   </ThemeProvider>
