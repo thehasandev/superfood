@@ -8,11 +8,18 @@ const path = require("path");
 
 // middlewire
 app.use(cors());
+app.use(
+  cors({
+    origin: "https://panel-superfood.vercel.app", // Your frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 app.use("/api/v1", Rutes);
-app.get("/",((req,res)=>{
-  res.send("Hello")
-}))
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Database
